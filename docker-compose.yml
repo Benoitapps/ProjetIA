@@ -1,0 +1,17 @@
+version: '3.6'
+
+services:
+  db:
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      TZ: 'Europe/Paris'
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: app
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+
+volumes:
+  pg-data: {}
