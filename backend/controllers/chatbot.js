@@ -8,8 +8,10 @@ require("dotenv").config({ path: ".env.local", override: true });
 
 async function bot(question) {
   const openai = new OpenAi({
-    apiKey: "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",
+    apiKey: process.env.API_KEY,
   });
+
+  
 
   const completions = await openai.chat.completions.create({
     model: "gpt-3.5-turbo",

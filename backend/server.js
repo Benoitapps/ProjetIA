@@ -8,6 +8,7 @@ const GenericController = require("./controllers/generic");
 const homeRoutes = require('./routes/home');
 const userRoutes = require('./routes/user');
 const chatbotRoutes = require('./routes/chatbot');
+const recipebotRoutes = require('./routes/recipe');
 
 const { connect } = require('./services/mongoose');
 const { connectpg } = require('./db/');
@@ -30,6 +31,7 @@ app.use("/", userRoutes)
 app.use("/connecter", homeRoutes)
 app.use("/admin", adminRoutes)
 app.use("/chat", chatbotRoutes)
+app.use("/recette", recipebotRoutes)
 
 const port = process.env.PORT_BACK;
 const hostname = process.env.DOMAIN_NAME;
