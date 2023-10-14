@@ -8,7 +8,7 @@ require("dotenv").config({ path: ".env.local", override: true });
 
 async function bot(question) {
   const openai = new OpenAi({
-    apiKey: "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",
+    apiKey: process.env.API_KEY,
   });
 
   

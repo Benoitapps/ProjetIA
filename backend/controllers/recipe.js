@@ -8,7 +8,7 @@ require("dotenv").config({ path: ".env.local", override: true });
 
 async function botPreparation(question) {
   const openai = new OpenAi({
-    apiKey: "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",
+    apiKey: process.env.API_KEY,
   });
 
   const completions = await openai.chat.completions.create({
@@ -31,7 +31,7 @@ async function botPreparation(question) {
 
 async function botIngredients(question) {
     const openai = new OpenAi({
-      apiKey: "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",
+        apiKey: process.env.API_KEY,
     });
   
     const completions = await openai.chat.completions.create({
@@ -54,7 +54,7 @@ async function botIngredients(question) {
 
 async function botImage(question) {
   const openai = new OpenAi({
-    apiKey: "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",
+    apiKey: process.env.API_KEY,
   });
   const image = await openai.images.generate({ prompt: question, size: "256x256", });
   console.log(image.data);
