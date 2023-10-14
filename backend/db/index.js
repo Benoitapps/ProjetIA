@@ -16,7 +16,34 @@ files.forEach((file) => {
 });
 
 const User = db.User;
+const Comment = db.Comment;
+const Recipe = db.Recipe;
+const Ingredient = db.Ingredient;
+const Image = db.Image;
+const FoodPreference = db.FoodPreference;
+const Favoris = db.Favoris;
 
+User.hasMany(FoodPreference, 
+  {foreignKey: 'user_id', alias : "users_foods" });
+
+User.hasMany(Favoris, 
+  {foreignKey: 'user_id', alias : "users_favoris" });
+
+User.hasMany(Comment, 
+  {foreignKey: 'user_id', alias : "users_comments" });
+
+
+Recipe.hasMany(Favoris,
+  {foreignKey: 'recipe_id', alias : "recipes_favoris" });
+  
+Recipe.hasMany(Comment, 
+  {foreignKey: 'recipe_id', alias : "recipes_comments" });
+
+Recipe.hasMany(Ingredient, 
+  {foreignKey: 'recipe_id', alias : "recipes_ingredients" });
+
+Recipe.hasMany(Image, 
+  {foreignKey: 'recipe_id', alias : "recipes_images" });
 
 
 
