@@ -23,23 +23,10 @@ module.exports = function (connection) {
           // is: /^[a-zA-Z0-9!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]+$/i,
         },
       },
-      website:{
+      name:{
         type: DataTypes.STRING,
         allowNull: false,
       },
-      role:{
-        type: DataTypes.STRING,
-        defaultValue: "user",
-        allowNull: false,
-      },
-      is_verified:{
-        type : DataTypes.BOOLEAN,
-        defaultValue: false,
-      },
-      api_token: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      }
     },
     {
       tableName: "users",
@@ -49,8 +36,6 @@ module.exports = function (connection) {
     }
   );
 
-//User.belongsToMany(KpiName, { through: "UserKpiNames" });
-  //KpiName.belongsToMany(User, { through: "UserKpiNames" });
 
   return User;
 };
