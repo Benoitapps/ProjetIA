@@ -57,7 +57,6 @@ async function botImage(question) {
     apiKey: process.env.API_KEY,
   });
   const image = await openai.images.generate({ prompt: question, size: "256x256", });
-  console.log(image.data);
   return image.data;
 }
 
