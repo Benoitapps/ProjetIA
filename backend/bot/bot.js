@@ -40,7 +40,9 @@ async function botImage(formImage,sizeImage) {
     apiKey: process.env.API_KEY,
   });
   const image = await openai.images.generate({ prompt: formImage, size: sizeImage });
-  return image.data;
+
+  imageURL = image.data[0].url;
+  return imageURL;
 }
 
 module.exports = {bot, botImage};

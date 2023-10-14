@@ -10,7 +10,7 @@ module.exports = function (connection) {
           allowNull: false,
         },
         description:{
-          type: DataTypes.STRING,
+          type: DataTypes.TEXT,
           allowNull: false,
         },
         
@@ -18,7 +18,7 @@ module.exports = function (connection) {
       {
         tableName: "recipes",
         sequelize: connection,
-        //timestamps: false,
+        timestamps: false,
         //paranoid: true // soft delete
       }
     );

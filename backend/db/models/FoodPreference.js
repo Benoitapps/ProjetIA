@@ -14,7 +14,7 @@ module.exports = function (connection) {
       {
         tableName: "food_preferences",
         sequelize: connection,
-        //timestamps: false,
+        timestamps: false,
         //paranoid: true // soft delete
       }
     );
