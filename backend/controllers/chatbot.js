@@ -11,6 +11,8 @@ async function bot(question) {
     apiKey: "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",
   });
 
+  
+
   const completions = await openai.chat.completions.create({
     model: "gpt-3.5-turbo",
     messages: [
