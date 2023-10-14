@@ -5,8 +5,6 @@ module.exports = function (connection) {
 
   User.init(
     {
-      // firstname: DataTypes.STRING,
-      // lastname: DataTypes.STRING,
       email: {
         type: DataTypes.STRING,
         validate: {
@@ -18,10 +16,6 @@ module.exports = function (connection) {
       password: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: {
-         // len: [8, 32]
-          // is: /^[a-zA-Z0-9!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]+$/i,
-        },
       },
       name:{
         type: DataTypes.STRING,
@@ -31,8 +25,6 @@ module.exports = function (connection) {
     {
       tableName: "users",
       sequelize: connection,
-      //timestamps: false,
-      //paranoid: true // soft delete
     }
   );
 

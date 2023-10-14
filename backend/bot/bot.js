@@ -1,8 +1,4 @@
 const OpenAi = require("openai");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const User = require("../db").User;
-const generateToken = require("../utils/generateToken");
 
 require("dotenv").config({ path: ".env.local", override: true });
 
