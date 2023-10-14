@@ -17,7 +17,7 @@ module.exports = function (connection) {
       {
         tableName: "images",
         sequelize: connection,
-        //timestamps: false,
+        timestamps: false,
         //paranoid: true // soft delete
       }
     );

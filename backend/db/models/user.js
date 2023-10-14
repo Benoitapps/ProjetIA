@@ -31,7 +31,7 @@ module.exports = function (connection) {
     {
       tableName: "users",
       sequelize: connection,
-      //timestamps: false,
+      timestamps: false,
       //paranoid: true // soft delete
     }
   );

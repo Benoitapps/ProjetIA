@@ -9,15 +9,11 @@ module.exports = function (connection) {
           type: DataTypes.STRING,
           allowNull: false,
         },
-        quantite: {
-            type: DataTypes.STRING, // Change the type to VARCHAR(1000)
-            allowNull: false,
-          },
       },
       {
         tableName: "ingredients",
         sequelize: connection,
-        //timestamps: false,
+        timestamps: false,
         //paranoid: true // soft delete
       }
     );

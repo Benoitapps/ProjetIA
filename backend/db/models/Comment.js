@@ -18,7 +18,7 @@ module.exports = function (connection) {
       {
         tableName: "comments",
         sequelize: connection,
-        //timestamps: false,
+        timestamps: false,
         //paranoid: true // soft delete
       }
     );

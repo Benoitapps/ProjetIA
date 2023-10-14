@@ -13,7 +13,7 @@ module.exports = function (connection) {
       {
         tableName: "favoris",
         sequelize: connection,
-        //timestamps: false,
+        timestamps: false,
         //paranoid: true // soft delete
       }
     );
