@@ -45,5 +45,4 @@ Recipe.hasMany(Ingredient,
 Recipe.hasMany(Image, 
   {foreignKey: 'recipe_id', alias : "recipes_images" });
 
-
 module.exports = db;

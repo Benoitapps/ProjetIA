@@ -1,12 +1,7 @@
-const OpenAi = require("openai");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const User = require("../db").User;
 const Recipe = require("../db").Recipe;
 const Favoris = require("../db").Favoris;
 const Ingredient = require("../db").Ingredient;
 const Image = require("../db").Image;
-const generateToken = require("../utils/generateToken");
 const { get } = require("mongoose");
 
 const bot = require("../bot/bot").bot;
