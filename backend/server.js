@@ -7,11 +7,10 @@ const adminRoutes = require('./routes/admin');
 const GenericController = require("./controllers/generic");
 const homeRoutes = require('./routes/home');
 const userRoutes = require('./routes/user');
+const chatbotRoutes = require('./routes/chatbot');
 
 const { connect } = require('./services/mongoose');
 const { connectpg } = require('./db/');
-
-
 
 const app = express();
 const sequelize = require('sequelize')
@@ -30,6 +29,7 @@ app.use(express.text());
 app.use("/", userRoutes)
 app.use("/connecter", homeRoutes)
 app.use("/admin", adminRoutes)
+app.use("/chat", chatbotRoutes)
 
 const port = process.env.PORT_BACK;
 const hostname = process.env.DOMAIN_NAME;
