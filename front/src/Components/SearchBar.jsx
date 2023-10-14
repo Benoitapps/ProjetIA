@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 function SearchBar() {
     const [searchValue, setSearchValue] = useState("");
     const handleClick = () => {
-        console.log(searchValue);
+        console.log("input : " + searchValue);
     }
 
     return (
