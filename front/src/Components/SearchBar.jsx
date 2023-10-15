@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import searchRecipe from '../hook/searchRecipe';
 
 function SearchBar() {
     const [searchValue, setSearchValue] = useState("");
     const handleClick = () => {
-        console.log("input : " + searchValue);
+        searchRecipe(searchValue);
     }
 
     return (

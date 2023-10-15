@@ -2,7 +2,6 @@ const Recipe = require("../db").Recipe;
 const Favoris = require("../db").Favoris;
 const Ingredient = require("../db").Ingredient;
 const Image = require("../db").Image;
-const { get } = require("mongoose");
 
 const bot = require("../bot/bot").bot;
 const botImage = require("../bot/bot").botImage;
