@@ -1,5 +1,5 @@
 const search = async (recipe) => {
-    await fetch("http://localhost:3000/recipe/search", {
+    await fetch("http://localhost:3000/search", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
