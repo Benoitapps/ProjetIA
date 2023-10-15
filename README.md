@@ -17,7 +17,7 @@ npm start
 ## Routes
 
 ### Chatbot
-```JSON
+```
 -path :  /chat
 -body : 
     { 
@@ -30,7 +30,7 @@ npm start
 ```
 
 ### Recipe
-```JSON
+```
 -path : /recette
 -body : 
     {
@@ -46,7 +46,7 @@ npm start
 ```
 
 ### Search recipe
-```JSON
+```
 -path : /search
 -body : 
     {
