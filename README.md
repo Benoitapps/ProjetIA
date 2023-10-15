@@ -41,9 +41,39 @@ npm start
         name : "string"
         preparation : "text"
         ingredients : string[]
-        "image": "url"
+        image: "url"
     }   
 ```
+
+### Favoris
+```JSON
+-path : /favoris (post)
+-body : 
+    {
+        userId : int,
+        recipeId : int
+    }
+-response : 
+    {
+        message: "Favoris ajouté !",
+        like: "true"
+    }   
+
+
+-path : /favoris (get)
+-body : 
+    {
+        userId : int,
+    }
+-response : 
+    {
+        favoris : id[]
+    }   
+```
+
+
+
+
 
 ### Search recipe
 ```

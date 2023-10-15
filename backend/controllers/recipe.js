@@ -1,5 +1,4 @@
 const Recipe = require("../db").Recipe;
-const Favoris = require("../db").Favoris;
 const Ingredient = require("../db").Ingredient;
 const Image = require("../db").Image;
 
@@ -15,12 +14,11 @@ const profilBotIngedient ="Tu es un un chef étoilé qui realise les meilleur re
 
 async function getRecipeVerif(req, res) {
   try {
-    if (!req.body?.question || !req.body?.id) {
+    if (!req.body?.question) {
       return res.status(400).json({ error: "Missing parameters" });
     }
 
     const question = req.body.question;
-    const userId = req.body.id;
 
     const recipe = await Recipe.findOne({ where: { name: question } });
     if (!recipe) {
@@ -38,12 +36,11 @@ async function getRecipeVerif(req, res) {
 
 async function getRecipeExist(req, res) {
   try {
-    if (!req.body?.question || !req.body?.id) {
+    if (!req.body?.question) {
       return res.status(400).json({ error: "Missing parameters" });
     }
 
     const question = req.body.question;
-    const userId = req.body.id;
 
     const recipe = await Recipe.findOne({ where: { name: question } });
     if (!recipe) {
@@ -99,11 +96,10 @@ async function getRecipe(req, res) {
 
 async function getPreparation(req, res) { //stockage en bdd
   try {
-    if (!req.body?.question || !req.body?.id) {
+    if (!req.body?.question) {
       return res.status(400).json({ error: "Missing parameters" });
     }
-    const userId = req.body.id;
-
+    
     const question = req.body.question;
     const preparation = await bot(profilBot,questionBot + " " + question);
     // const preparation =
@@ -114,22 +110,17 @@ async function getPreparation(req, res) { //stockage en bdd
       description: preparation,
     });
 
-    const favoris = await Favoris.create({
-      like: false,
-      user_id: userId,
-      recipe_id: recipe.id,
-    });
 
     return { preparation: preparation, recipeId: recipe.id };
   } catch (error) {
-    console.error("Error creating recipe or favoris:", error);
-    res.status(500).json({ error: "Failed to create recipe or favoris." });
+    console.error("Error creating recipe:", error);
+    res.status(500).json({ error: "Failed to create recipe." });
   }
 }
 
 async function getIngredient(req, res, recipeId) { //stockge en bdd
     try {
-      if (!req.body?.question || !req.body?.id) {
+      if (!req.body?.question) {
         return res.status(400).json({ error: "Missing parameters" });
       }
       const question = req.body.question;
