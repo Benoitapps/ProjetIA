@@ -25,6 +25,32 @@ async function addFavoris(req, res) {
     }
 }
 
+async function deleteFavoris(req, res) {
+    if (!req.body?.userId || !req.body?.recipeId) {
+        return res.status(400).json({ error: "Missing parameters" });
+    }
+
+    const userId = req.body.userId;
+    const recipeId = req.body.recipeId;
+
+    const favoris = await Favoris.destroy({
+        where: {
+            user_id: userId,
+            recipe_id: recipeId
+        },
+    })
+        .then(() => {
+            res.status(200).json({
+                message: "Favoris supprimé avec succès",
+            });
+        })
+        .catch((err) => {
+            res.status(500).json({
+                err,
+            });
+        });
+}
+
 
 async function getFavoris(req, res) {
     try {
@@ -53,4 +79,4 @@ async function getFavoris(req, res) {
 }
 
 
-module.exports = { addFavoris, getFavoris };
+module.exports = { addFavoris, getFavoris, deleteFavoris };

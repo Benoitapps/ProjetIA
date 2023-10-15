@@ -4,5 +4,6 @@ const favoris = require('../controllers/favoris');
 
 router.post('/', favoris.addFavoris);
 router.get('/', favoris.getFavoris);
+router.delete('/', favoris.deleteFavoris);
 
 module.exports = router;

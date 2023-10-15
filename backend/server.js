@@ -9,6 +9,7 @@ const recipebotRoutes = require("./routes/recipe");
 const searchRoutes = require("./routes/search");
 const favorisRoutes = require("./routes/favoris");
 const commentRoutes = require("./routes/comment");
+const foodPreferenceRoutes = require("./routes/foodPreference");
 
 const app = express();
 
@@ -32,6 +33,7 @@ app.use("/recette", recipebotRoutes);
 app.use("/search", searchRoutes);
 app.use("/favoris", favorisRoutes);
 app.use("/comment", commentRoutes);
+app.use("/foodPreference", foodPreferenceRoutes);
 
 const port = process.env.PORT_BACK;
 const hostname = process.env.DOMAIN_NAME;

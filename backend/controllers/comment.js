@@ -27,6 +27,32 @@ async function addComment(req, res) {
     }
 }
 
+async function deleteComment(req, res) {
+    if (!req.body?.userId || !req.body?.commentId) {
+        return res.status(400).json({ error: "Missing parameters" });
+    }
+
+    const userId = req.body.userId;
+    const commentId = req.body.commentId;
+
+    const comment = await Comment.destroy({
+        where: {
+            user_id: userId,
+            id: commentId
+        },
+    })
+        .then(() => {
+            res.status(200).json({
+                message: "Commentaire supprimé avec succès",
+            });
+        })
+        .catch((err) => {
+            res.status(500).json({
+                err,
+            });
+        });
+}
+
 
 async function getComment(req, res) {
     try {
@@ -52,4 +78,4 @@ async function getComment(req, res) {
 }
 
 
-module.exports = { addComment, getComment };
+module.exports = { addComment, getComment, deleteComment };
