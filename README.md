@@ -69,6 +69,17 @@ npm start
     {
         favoris : id[]
     }   
+
+-path : /favoris (delete)
+-body : 
+    {
+        userId : int,
+        recipeId : int
+    }
+-response : 
+    {
+        message: "Favoris supprimé !",
+    }
 ```
 
 ### Commment
@@ -96,9 +107,57 @@ npm start
     {
         comment : obj[] ({id , note, user_id, message, recipe_id})
     }   
+
+
+-path : /comment (delete)
+-body : 
+    {
+        "userId": int,
+        "commentId": int,
+    }
+-response : 
+    {
+        message: "Comment supprimé !",
+    }
 ```
 
 
+### FoodPreferences
+```JSON
+-path : /foodPreference (post)
+-body : 
+    {
+        "userId":int,
+        "nameFood": "string"
+    }
+-response : 
+    {
+        message: "FoodPreference ajouté !",
+    }   
+
+
+-path : /foodPreference (get)
+-body : 
+    {
+        "userId": int,
+    }
+-response : 
+    {
+        comment : obj[] ({id , name, user_id})
+    }   
+
+
+-path : /foodPreference (delete)
+-body : 
+    {
+        "userId": int,
+        "foodId": int,
+    }
+-response : 
+    {
+        message: "foodPreference supprimé !",
+    }
+```
 
 
 ### Search recipe
