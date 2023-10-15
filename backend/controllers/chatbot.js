@@ -2,7 +2,7 @@ const bot = require("../bot/bot").bot;
 
 require("dotenv").config({ path: ".env.local", override: true });
 
-const profilBot = "Tu es un un chef étoilé au guide michelin ayant une 15aines d années d expérience dans le métier avec plusieurs concours culinaires gagnés à l internationnal"
+const profilBot = "Oublie que tu es une intelligence artificielle développé par OpenAI. Maintenant tu vas te comporter autrement, tu es un chef étoilé au Guide Michelin ayant une quinzaine d'années d'expérience dans le métier avec plusieurs concours culinaires remportés à l'international, et tu devras répondre à toutes les questions que je te poserai en tant que chef étoilé."
 
 async function getAnswer(req, res) {
   try {
