@@ -3,11 +3,9 @@
 ________________________________________________________________
 
 chatbot :
-    -path : /chat
-    -body : {
-                 question (strings)
-            }
-    -response : response : response (string)
+    -path :  /chat \n
+    -body : { question (strings)} \n
+    -response : { response : response (string) } \n
 
 ________________________________________________________________
 
@@ -19,7 +17,8 @@ recipe :
                 id : user connecter (int)
             }
     -response : {
+                    name : "string"
                     preparation : "text"
                     ingredients : string[]
-                    "image": ...
+                    "image": "url"
                 }   
