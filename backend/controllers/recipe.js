@@ -12,6 +12,69 @@ const profilBot = "Tu es un un chef étoilé qui realise les meilleur recette et
 const questionBot = "sans les ingrediens je veux juste la preparation de";
 const profilBotIngedient ="Tu es un un chef étoilé qui realise les meilleur recette et tu ne repond qu'avec la liste des ingredients de la recette avec les quantités";
 
+
+async function getRecipeVerif(req, res) {
+  try {
+    if (!req.body?.question || !req.body?.id) {
+      return res.status(400).json({ error: "Missing parameters" });
+    }
+
+    const question = req.body.question;
+    const userId = req.body.id;
+
+    const recipe = await Recipe.findOne({ where: { name: question } });
+    if (!recipe) {
+      await getRecipe(req, res); // si le nom existe pas on le creer
+    }
+    else {
+      await getRecipeExist(req, res); // le nom existe on recupere les infos en BDD
+    }
+
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ error: "An error occurred" });
+  }
+}
+
+async function getRecipeExist(req, res) {
+  try {
+    if (!req.body?.question || !req.body?.id) {
+      return res.status(400).json({ error: "Missing parameters" });
+    }
+
+    const question = req.body.question;
+    const userId = req.body.id;
+
+    const recipe = await Recipe.findOne({ where: { name: question } });
+    if (!recipe) {
+      return res.status(404).json({ error: "Recipe not found" });
+    }
+
+    const ingredients = await Ingredient.findAll({ where: { recipe_id: recipe.id } });
+    if (!ingredients) {
+      return res.status(404).json({ error: "ingredients not found" });
+    }
+
+    const image = await Image.findOne({ where: { recipe_id: recipe.id } });
+    if (!ingredients) {
+      return res.status(404).json({ error: "image not found" });
+    }
+    const ingredientNames = ingredients.map(ingredient => ingredient.name);
+
+    res.status(200).json({
+      name: question,
+      recipe: recipe.description,
+      ingredients: ingredientNames,
+      image: image.src
+    });
+
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ error: "An error occurred" });
+  }
+}
+   
+
 async function getRecipe(req, res) {
   try {
     if (!req.body?.question) {
@@ -24,6 +87,7 @@ async function getRecipe(req, res) {
     const image =  await getImage(req, res, recipeId);;
 
     res.status(200).json({
+      name: question,
       preparation: objPreparation.preparation,
       ingredients: ingredients,
       image: image,
@@ -33,7 +97,7 @@ async function getRecipe(req, res) {
   }
 }
 
-async function getPreparation(req, res) {
+async function getPreparation(req, res) { //stockage en bdd
   try {
     if (!req.body?.question || !req.body?.id) {
       return res.status(400).json({ error: "Missing parameters" });
@@ -63,7 +127,7 @@ async function getPreparation(req, res) {
   }
 }
 
-async function getIngredient(req, res, recipeId) {
+async function getIngredient(req, res, recipeId) { //stockge en bdd
     try {
       if (!req.body?.question || !req.body?.id) {
         return res.status(400).json({ error: "Missing parameters" });
@@ -96,7 +160,7 @@ async function getIngredient(req, res, recipeId) {
     }
   }
 
-  async function getImage(req, res, recipeId) {
+  async function getImage(req, res, recipeId) { //stockage en bdd
     try {
       if (!req.body?.question || !req.body?.id) {
         return res.status(400).json({ error: "Missing parameters" });
@@ -119,4 +183,4 @@ async function getIngredient(req, res, recipeId) {
     }
   }
 
-module.exports = { getRecipe };
+module.exports = { getRecipeVerif };
