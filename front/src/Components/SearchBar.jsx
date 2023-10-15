@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import searchRecipe from '../hook/searchRecipe';
+import searchRecipe from '../hook/search';
 
 function SearchBar() {
     const [searchValue, setSearchValue] = useState("");

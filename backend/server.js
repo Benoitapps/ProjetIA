@@ -6,7 +6,7 @@ require("dotenv").config({ path: ".env.local", override: true });
 // const userRoutes = require("./routes/user");
 const chatbotRoutes = require("./routes/chatbot");
 const recipebotRoutes = require("./routes/recipe");
-const recipeSearchRoutes = require("./routes/recipeSearch");
+const searchRoutes = require("./routes/search");
 
 const app = express();
 
@@ -27,7 +27,7 @@ app.use(express.text());
 // app.use("/", userRoutes);
 app.use("/chat", chatbotRoutes);
 app.use("/recette", recipebotRoutes);
-app.use("/recipe/search", recipeSearchRoutes);
+app.use("/search", searchRoutes);
 
 const port = process.env.PORT_BACK;
 const hostname = process.env.DOMAIN_NAME;

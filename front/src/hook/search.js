@@ -1,4 +1,4 @@
-const searchRecipe = async (recipe) => {
+const search = async (recipe) => {
     await fetch("http://localhost:3000/recipe/search", {
         method: "POST",
         headers: {
@@ -8,4 +8,4 @@ const searchRecipe = async (recipe) => {
     });
 } 
 
-export default searchRecipe;
+export default search;

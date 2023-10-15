@@ -22,7 +22,7 @@ router.post('/', async (req, res) => {
             [
                 {
                     "name": "nom de la recette principale",
-                    "description": "description de la recette)",
+                    "description": "description de la recette",
                     "time": "temps de préparation total de la recette",
                 },
                 similar_recipes: [
