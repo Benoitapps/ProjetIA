@@ -71,6 +71,32 @@ npm start
     }   
 ```
 
+### Commment
+```JSON
+-path : /comment (post)
+-body : 
+    {
+        "note": int,
+        "recipeId": int,
+        "userId":int,
+        "message": "string"
+    }
+-response : 
+    {
+        message: "Comment ajouté !",
+    }   
+
+
+-path : /comment (get)
+-body : 
+    {
+        "recipeId": int,
+    }
+-response : 
+    {
+        comment : obj[] ({id , note, user_id, message, recipe_id})
+    }   
+```
 
 
 
