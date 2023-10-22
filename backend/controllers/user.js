@@ -6,7 +6,7 @@ require("dotenv").config({ path: ".env.local", override: true });
 
 async function signup(req, res) {
   try {
-    if (!req.body?.email || !req.body?.password || !req.body?.website) {
+    if (!req.body?.email || !req.body?.password || !req.body?.name) {
       return res.status(400).json({ error: "Missing parameters" });
     }
 
@@ -39,7 +39,7 @@ async function signup(req, res) {
     const user = User.create({
       email: req.body.email,
       password: hashedPassword,
-      website: req.body.website,
+      name: req.body.name,
       api_token: apiToken,
     });
 
@@ -140,7 +140,7 @@ function getConnectedUser(req, res) {
         res.status(200).json({
           userId: user.id,
           email: user.email,
-          website: user.website,
+          name: user.name,
           apiToken: user.api_token,
           // Ajoutez d'autres propriétés de l'utilisateur si nécessaire
         });

@@ -9,6 +9,8 @@ function HomePage() {
     return (
         <>
             <Link to="/recipe">Exemple de redirection</Link>
+            <Link to="/register">Exemple de register</Link>
+            <Link to="/login">Exemple de login</Link>
             <SearchBar setRecipes={setRecipes}/>
             <RecipesList recipes={recipes}/>
         </>
