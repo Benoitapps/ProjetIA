@@ -3,7 +3,7 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 require("dotenv").config({ path: ".env.local", override: true });
 
-// const userRoutes = require("./routes/user");
+const userRoutes = require("./routes/user");
 const chatbotRoutes = require("./routes/chatbot");
 const recipebotRoutes = require("./routes/recipe");
 const searchRoutes = require("./routes/search");
@@ -14,20 +14,17 @@ const foodPreferenceRoutes = require("./routes/foodPreference");
 const app = express();
 
 // Use to allow cross-origin requests
-app.use(
-    cors(
-        {
-            origin: "*",
-        }
-    )
-);
+app.use(cors({
+    origin: [`${process.env.URL}:${process.env.PORT_FRONT}`, 'http://162.19.79.79:8080/'],
+    credentials : true,
+  }));
 
 //cookies
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.text());
 
-// app.use("/", userRoutes);
+app.use("/", userRoutes);
 app.use("/chat", chatbotRoutes);
 app.use("/recette", recipebotRoutes);
 app.use("/search", searchRoutes);
