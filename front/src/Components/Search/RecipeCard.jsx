@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../css/RecipeCard.css';
+import '../../assets/css/RecipeCard.css';
 
 function RecipeCard({ recipe }) {
     return (
