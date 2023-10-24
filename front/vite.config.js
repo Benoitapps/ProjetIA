@@ -6,5 +6,10 @@ export default defineConfig({
   plugins: [react()],
   server: {
     open: true,
-  }
+  },
+  resolve: {
+    alias: {
+      '@css': '/src/assets/css',
+    },
+  },
 })

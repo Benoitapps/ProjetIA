@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import register from '../../hook/register';
-import '../../css/Register/RegisterForm.css';
-
-
+import '@css/Register/RegisterForm.css';
 
 function FormTheme() {
 

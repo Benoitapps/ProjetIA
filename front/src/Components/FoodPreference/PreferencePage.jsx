@@ -1,7 +1,5 @@
-import { useState } from 'react';
 import fondRegister  from './../../ressources/fondreg.png'
-import '../../css/Register/RegisterPage.css';
-
+import '@css/Register/RegisterPage.css';
 
 import { Link } from 'react-router-dom';
 

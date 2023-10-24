@@ -1,11 +1,7 @@
-import { useState } from 'react';
-import  RegisterCard  from './RegisterCard';
+import { Link } from 'react-router-dom';
 import FormTheme from './FormTheme';
 import fondRegister  from './../../ressources/fondreg.png'
-import '../../css/Register/RegisterPage.css';
-
-
-import { Link } from 'react-router-dom';
+import '@css/Register/RegisterPage.css'
 
 function RegisterPage() {
 
