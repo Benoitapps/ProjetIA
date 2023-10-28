@@ -3,7 +3,7 @@
 :root {
   /* Colors */
   --primary: #FF6F61;
-  --primary-hover: #FF6F61;
+  --primary-hover: #FFA299;
   --background: #F9F9F9;
   --chatbot: #FFE8E5;
 
@@ -52,6 +52,7 @@ li {
 
 a {
   text-decoration: none;
+  color: inherit;
 }
 
 h1,
@@ -67,4 +68,14 @@ span,
 input,
 button {
   font-family: "Montserrat", sans-serif;
+  color: var(--text-black);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-style: normal;
 }

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import FormTheme from './FormTheme';
-import fondRegister  from './../../ressources/fondreg.png'
+import fondRegister  from '../../assets/img/fondreg.png'
 import '@css/Register/RegisterPage.css'
 
 function RegisterPage() {
