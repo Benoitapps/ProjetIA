@@ -15,9 +15,7 @@ const app = express();
 
 // Use to allow cross-origin requests
 app.use(cors({
-    origin: [
-      '*',
-    ],
+    origin: "*",
     credentials : true,
   }));
 
