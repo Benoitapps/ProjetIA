@@ -1,0 +1,16 @@
+.recipes-list {
+  width: 100%;
+  text-align: center;
+  padding: 50px 70px;
+}
+
+.recipes-list-title {
+  margin-bottom: 35px;
+}
+
+.recipes-list-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+  width: 100%;
+}

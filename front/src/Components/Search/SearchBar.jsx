@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import searchRecipe from '../../hook/search';
-import '@css/SearchBar.css';
+import '@css/Search/SearchBar.css';
 import loading from '@img/loading.gif';
 
 function SearchBar({ setRecipes }) {
