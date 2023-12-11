@@ -15,7 +15,8 @@ const app = express();
 
 // Use to allow cross-origin requests
 app.use(cors({
-    origin: "*",
+    origin: [`${process.env.URL}:${process.env.PORT_FRONT}`, 'http://loclhost:3000/'],
+
     credentials : true,
   }));
 

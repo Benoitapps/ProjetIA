@@ -1,21 +1,16 @@
-const register = async (data) => {
-    console.log(data);
+const getUser = async () => {
     try {
-        const result = await fetch("http://localhost:3000/signup", {
-            method: "POST",
+        const result = await fetch("http://localhost:3000/connect", {
+            method: "GET",
             headers: {
                 "Content-Type": "application/json",
-
             },
             credentials : 'include',
-            body: JSON.stringify({
-                email: data.email,
-                password: data.password,
-                name: data.name
-              })
+
         });
 
         if (result.ok) {
+            console.log("ca envoie")
             const data = await result.json();
             return data;
         } else {
@@ -27,5 +22,4 @@ const register = async (data) => {
     }
 }
 
-
-export default register;
+export {getUser};

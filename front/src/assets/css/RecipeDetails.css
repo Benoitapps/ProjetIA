@@ -1,0 +1,22 @@
+.recette{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.details{
+    flex: 3; /* Takes 3/4 of the available space */
+}
+
+.recomendations{
+    flex: 1; /* Takes 1/4 of the available space */
+    border: solid 1px black;
+    height: 100%;
+}
+
+.flexStar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}

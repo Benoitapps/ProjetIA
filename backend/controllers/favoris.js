@@ -1,12 +1,17 @@
 const Favoris = require("../db").Favoris;
+const {getConnectedUser} = require("../services/userToken");
 
 async function addFavoris(req, res) {
     try {
-        if (!req.body?.userId || !req.body?.recipeId) {
+        if (!req.body?.recipeId) {
             return res.status(400).json({ error: "Missing parameters" });
         }
+        const token = req.cookies.token;
+        console.log("token", token);
 
-        const userId = req.body.userId;
+        const userId = await getConnectedUser(token);
+        console.log(userId);
+
         const recipeId = req.body.recipeId;
 
         const favoris = await Favoris.create({
@@ -26,14 +31,19 @@ async function addFavoris(req, res) {
 }
 
 async function deleteFavoris(req, res) {
-    if (!req.body?.userId || !req.body?.recipeId) {
+
+    if (!req.body?.recipeId) {
         return res.status(400).json({ error: "Missing parameters" });
     }
+    const token = req.cookies.token;
+    console.log("token", token);
 
-    const userId = req.body.userId;
+    const userId = await getConnectedUser(token);
+    console.log(userId);
+
     const recipeId = req.body.recipeId;
 
-    const favoris = await Favoris.destroy({
+    await Favoris.destroy({
         where: {
             user_id: userId,
             recipe_id: recipeId
@@ -49,6 +59,38 @@ async function deleteFavoris(req, res) {
                 err,
             });
         });
+}
+
+async function getStatFavorite(req, res) {
+    if (!req.params?.recipeId) {
+        return res.status(400).json({ error: "Missing parameters" });
+    }
+    console.log("req.params", req.params)
+    const token = req.cookies.token;
+    console.log("token", token);
+
+    try {
+        const userId = await getConnectedUser(token);
+        console.log(userId);
+
+        const recipeId = req.params.recipeId;
+
+        const favoris = await Favoris.findOne({
+            where: {
+                user_id: userId,
+                recipe_id: recipeId,
+                like: true
+            }
+        });
+        console.log("favoris", favoris)
+
+        const isFavorite = favoris ? true : false;
+
+        return res.status(200).json({ isFavorite });
+    } catch (error) {
+        console.error("Error in getStatFavorite:", error);
+        return res.status(500).json({ error: "Internal Server Error" });
+    }
 }
 
 
@@ -79,4 +121,4 @@ async function getFavoris(req, res) {
 }
 
 
-module.exports = { addFavoris, getFavoris, deleteFavoris };
+module.exports = { addFavoris, getFavoris, deleteFavoris, getStatFavorite };
