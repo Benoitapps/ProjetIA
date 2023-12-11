@@ -8,7 +8,7 @@ import starFalse from "@img/start_false.png";
 
 import {useEffect, useState} from "react";
 
-function StarFavoris({ name,id }) {
+function StarFavoris({ name,id, handleClick }) {
 
     const [favoris, setFavoris] = useState();
     const refresh = useState(false)

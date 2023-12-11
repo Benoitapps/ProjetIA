@@ -5,6 +5,7 @@ import RegisterPage from './Components/Register/RegisterPage';
 import LoginPage from './Components/Login/LoginPage';
 import PreferencePage from './Components/FoodPreference/PreferencePage';
 import RecipePageDetails from './Components/Recipes/RecipePageDetails.jsx';
+import FavorisPage from './Components/Favoris/FavorisPage.jsx';
 import NavBar from './Components/NavBar';
 
 function App() {
@@ -17,6 +18,8 @@ function App() {
             <Route path="recipe" element={<RecipePageDetails/>} />
             <Route path="register" element={<RegisterPage />} />
             <Route path="login" element={<LoginPage />} />
+            <Route path="favoris" element={<FavorisPage />} />
+
             <Route path="pref" element={<PreferencePage />} />
           </Route>
         </Routes>

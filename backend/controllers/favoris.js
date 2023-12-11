@@ -1,4 +1,5 @@
 const Favoris = require("../db").Favoris;
+const Recipe = require("../db").Recipe;
 const {getConnectedUser} = require("../services/userToken");
 
 async function addFavoris(req, res) {
@@ -96,11 +97,13 @@ async function getStatFavorite(req, res) {
 
 async function getFavoris(req, res) {
     try {
-        if (!req.body?.userId || !req.body?.recipeId) {
-            return res.status(400).json({ error: "Missing parameters" });
-        }
 
-        const userId = req.body.userId;
+        const token = req.cookies.token;
+        console.log("token", token);
+
+        const userId = await getConnectedUser(token);
+        console.log(userId);
+
 
         const favoris = await Favoris.findAll({
           where: {
@@ -110,9 +113,17 @@ async function getFavoris(req, res) {
         });
 
         const recipeIds = favoris.map(favori => favori.recipe_id);
+        console.log("recipeIds", recipeIds)
+
+        const tabRecipe = await Recipe.findAll({
+            where: {
+                id: recipeIds
+            }
+        });
 
         res.status(201).json({
-            favoris: recipeIds,
+            favoris: favoris,
+            recipes: tabRecipe
         });
     } catch (error) {
         console.error("Error:", error);
