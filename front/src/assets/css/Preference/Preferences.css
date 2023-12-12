@@ -1,0 +1,46 @@
+.allPref{
+    display: flex;
+    flex-direction: column;
+}
+
+.prefcube{
+    border: solid 1px black;
+    width: 150px;
+    margin: 10px;
+}
+
+.inputText{
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.leinput{
+    width:40em;
+    height: 3em;
+    border-radius: 10px
+}
+
+.preffood{
+    display: flex;
+    margin-top: 5%;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 20%;
+    margin-right: 20%;
+    flex-wrap: wrap;
+}
+
+.flexDelete{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+.imagePref{
+    width: 25%;
+    height: 25%;
+}

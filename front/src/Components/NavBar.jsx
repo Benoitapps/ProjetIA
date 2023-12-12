@@ -18,6 +18,9 @@ function NavBar() {
                             <Link to="/favoris">Mes Recettes</Link>
                         </li>
                         <li>
+                            <Link to="/pref">Preferences Alimentaires</Link>
+                        </li>
+                        <li>
                             <Link to="/login">Connexion</Link>
                         </li>
                         <li className="register">

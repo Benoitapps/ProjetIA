@@ -12,13 +12,16 @@ function RecipeDes({recipeId}) {
     const [recipeIng, setRecipeIng] = useState([]);
     const [recipeName, setRecipeName] = useState(null);
     const [recipeImg, setRecipeImag] = useState("");
+    const [recipePrep, setRecipePrep] = useState("");
 
     const fetchRecipe = async () => {
         const data = await getRecipe(recipeId);
+        console.log(data)
         setRecipeDes(data.description);
         setRecipeName(data.name);
         setRecipeIng(data.ingredients);
         setRecipeImag(data.image);
+        setRecipePrep(data.preparation);
     }
 
     useEffect(() => {
@@ -37,8 +40,11 @@ function RecipeDes({recipeId}) {
             <div className="imgRecipe">
                 <img src={recipeImg} alt="image de la recette" />
             </div>
+            <div className="description">
+                <p>{recipeDes}</p>
+            </div>
             <RecipeIngredients ingredients={recipeIng} />
-            <RecipePreparation preparation={recipeDes} />
+            <RecipePreparation preparation={recipePrep} />
 
         </>
     )

@@ -47,6 +47,7 @@ async function getRecipeVerif(req, res) {
         name: recipe.name,
         description: recipe.description,
         ingredients: tabIngredients,
+        preparation: recipe.preparation,
         image: image.src
 
     })

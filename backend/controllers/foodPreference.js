@@ -1,16 +1,20 @@
 const { name } = require("ejs");
+const {getConnectedUser} = require("../services/userToken");
 
 const FoodPreference = require("../db").FoodPreference;
 
 async function addFoodPreference(req, res) {
     try {
-        if (!req.body?.userId || !req.body?.nameFood) {
+        if (!req.body?.nameFood) {
             return res.status(400).json({ error: "Missing parameters" });
         }
+        const token = req.cookies.token;
+        console.log("token", token);
 
-        const userId = req.body.userId;
+        const userId = await getConnectedUser(token);
+        console.log(userId);
+
         const nameFood = req.body.nameFood;
-
         const foodPreference = await FoodPreference.create({
             name: nameFood,
             user_id: userId,
@@ -27,11 +31,15 @@ async function addFoodPreference(req, res) {
 }
 
 async function deleteFoodPreference(req, res) {
-    if (!req.body?.userId || !req.body?.foodId) {
+    if (!req.body?.foodId) {
         return res.status(400).json({ error: "Missing parameters" });
     }
+    const token = req.cookies.token;
+    console.log("token", token);
 
-    const userId = req.body.userId;
+    const userId = await getConnectedUser(token);
+    console.log(userId);
+
     const foodId = req.body.foodId;
 
     const foodPreference = await FoodPreference.destroy({
@@ -54,11 +62,11 @@ async function deleteFoodPreference(req, res) {
 
 async function getFoodPreference(req, res) {
     try {
-        if (!req.body?.userId) {
-            return res.status(400).json({ error: "Missing parameters" });
-        }
+        const token = req.cookies.token;
+        console.log("token", token);
 
-        const userId = req.body.userId;
+        const userId = await getConnectedUser(token);
+        console.log(userId);
 
         const foodPreference = await FoodPreference.findAll({
             where: {
