@@ -1,0 +1,23 @@
+.recette{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.details{
+    flex: 3;
+    overflow: auto;
+}
+
+.recomendations{
+    flex: 1;
+    border: solid 1px black;
+    height: 100%;
+}
+
+.flexStar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}

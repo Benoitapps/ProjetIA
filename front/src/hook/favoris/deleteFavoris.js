@@ -1,19 +1,17 @@
-const register = async (data) => {
-    console.log(data);
+const deleteFavoris = async (id) => {
     try {
-        const result = await fetch("http://localhost:3000/signup", {
-            method: "POST",
+        const result = await fetch("http://localhost:3000/favoris", {
+            method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
-
             },
             credentials : 'include',
             body: JSON.stringify({
-                email: data.email,
-                password: data.password,
-                name: data.name
-              })
+                recipeId: id,
+            })
         });
+
+
 
         if (result.ok) {
             const data = await result.json();
@@ -27,5 +25,4 @@ const register = async (data) => {
     }
 }
 
-
-export default register;
+export {deleteFavoris};

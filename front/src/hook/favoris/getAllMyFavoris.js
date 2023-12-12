@@ -1,18 +1,12 @@
-const register = async (data) => {
-    console.log(data);
+const getAllFavoris = async () => {
     try {
-        const result = await fetch("http://localhost:3000/signup", {
-            method: "POST",
+        const result = await fetch(`http://localhost:3000/favoris`, {
+            method: "GET",
             headers: {
                 "Content-Type": "application/json",
-
             },
             credentials : 'include',
-            body: JSON.stringify({
-                email: data.email,
-                password: data.password,
-                name: data.name
-              })
+
         });
 
         if (result.ok) {
@@ -27,5 +21,4 @@ const register = async (data) => {
     }
 }
 
-
-export default register;
+export {getAllFavoris};

@@ -15,7 +15,7 @@ function NavBar() {
                     </div>
                     <ul>
                         <li>
-                            <Link to="/recipe">Recette</Link>
+                            <Link to="/favoris">Mes Recettes</Link>
                         </li>
                         <li>
                             <Link to="/login">Connexion</Link>
