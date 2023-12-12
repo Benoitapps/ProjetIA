@@ -14,7 +14,6 @@ const addFavoris = async (id) => {
 
 
         if (result.ok) {
-            console.log("ca envoie")
             const data = await result.json();
             return data;
         } else {

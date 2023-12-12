@@ -5,11 +5,12 @@
 }
 
 .details{
-    flex: 3; /* Takes 3/4 of the available space */
+    flex: 3;
+    overflow: auto;
 }
 
 .recomendations{
-    flex: 1; /* Takes 1/4 of the available space */
+    flex: 1;
     border: solid 1px black;
     height: 100%;
 }

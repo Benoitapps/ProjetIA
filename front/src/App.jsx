@@ -15,7 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<NavBar />}>
             <Route index element={<Home />} />
-            <Route path="recipe" element={<RecipePageDetails/>} />
+            <Route path="recipe/:recipeId" element={<RecipePageDetails/>} />
             <Route path="register" element={<RegisterPage />} />
             <Route path="login" element={<LoginPage />} />
             <Route path="favoris" element={<FavorisPage />} />

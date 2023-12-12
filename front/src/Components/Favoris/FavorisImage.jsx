@@ -1,13 +1,12 @@
 import React from 'react'
 
 
-function FavorisImage() {
+function FavorisImage({img}) {
 
     return (
         <>
 
-            <p> FavorisImage </p>
-
+            <img src={img} alt="image de la recette" />
         </>
     )
 }

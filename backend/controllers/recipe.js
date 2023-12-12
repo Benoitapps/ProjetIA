@@ -34,6 +34,8 @@ async function getRecipeVerif(req, res) {
      const ingredients = await Ingredient.findAll({ where: { recipe_id: recette } });
      let tabIngredients = [];
 
+     const image = await Image.findOne({ where: { recipe_id: recette } });
+
      ingredients.forEach(element => {
         tabIngredients.push(element.name);
      });
@@ -45,6 +47,7 @@ async function getRecipeVerif(req, res) {
         name: recipe.name,
         description: recipe.description,
         ingredients: tabIngredients,
+        image: image.src
 
     })
 

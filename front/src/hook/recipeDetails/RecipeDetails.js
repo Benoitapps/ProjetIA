@@ -1,16 +1,14 @@
-const getRecipe = async () => {
+const getRecipe = async (id) => {
     try {
-        const result = await fetch("http://localhost:3000/recette/11", {
+        const result = await fetch(`http://localhost:3000/recette/${id}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
             },
-            credentials : 'include',
         });
 
 
         if (result.ok) {
-            console.log("ca envoie")
             const data = await result.json();
             return data;
         } else {

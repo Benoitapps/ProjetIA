@@ -19,7 +19,6 @@ function StarFavoris({ name,id, handleClick }) {
         const data = await getStatsFavoris(id);
         setFavoris(data.isFavorite)
         data.isFavorite ? setStar(starTrue) : setStar(starFalse)
-        console.log(data.isFavorite);
     }
 
     useEffect(() => {
@@ -27,14 +26,11 @@ function StarFavoris({ name,id, handleClick }) {
     }, [refresh])
 
     const clickStar = () => {
-        console.log("etoile clicker")
         if (favoris === false) {
             addfavoris()
         } else {
             deletefavoris()
         }
-        // getFavoris()
-        console.log("etoile clicker",star)
 
     }
 

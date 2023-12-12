@@ -15,9 +15,6 @@ function NavBar() {
                     </div>
                     <ul>
                         <li>
-                            <Link to="/recipe">Recette</Link>
-                        </li>
-                        <li>
                             <Link to="/favoris">Mes Recettes</Link>
                         </li>
                         <li>

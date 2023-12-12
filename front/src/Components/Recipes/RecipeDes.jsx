@@ -7,18 +7,18 @@ import StarFavoris from '../Favoris/StarFavoris.jsx';
 import {getRecipe} from '../../hook/recipeDetails/RecipeDetails.js'
 import '@css/RecipeDetails.css';
 
-function RecipeDes() {
-
+function RecipeDes({recipeId}) {
     const [recipeDes, setRecipeDes] = useState("");
     const [recipeIng, setRecipeIng] = useState([]);
     const [recipeName, setRecipeName] = useState(null);
+    const [recipeImg, setRecipeImag] = useState("");
 
     const fetchRecipe = async () => {
-        const data = await getRecipe();
+        const data = await getRecipe(recipeId);
         setRecipeDes(data.description);
         setRecipeName(data.name);
         setRecipeIng(data.ingredients);
-        console.log(data)
+        setRecipeImag(data.image);
     }
 
     useEffect(() => {
@@ -33,6 +33,9 @@ function RecipeDes() {
                 <div><RecipeResume name={recipeName}/></div>
                <div> <StarFavoris name={recipeName} id={ 11}/></div>
 
+            </div>
+            <div className="imgRecipe">
+                <img src={recipeImg} alt="image de la recette" />
             </div>
             <RecipeIngredients ingredients={recipeIng} />
             <RecipePreparation preparation={recipeDes} />

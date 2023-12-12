@@ -1,5 +1,6 @@
 const Favoris = require("../db").Favoris;
 const Recipe = require("../db").Recipe;
+const Image = require("../db").Image;
 const {getConnectedUser} = require("../services/userToken");
 
 async function addFavoris(req, res) {
@@ -113,7 +114,16 @@ async function getFavoris(req, res) {
         });
 
         const recipeIds = favoris.map(favori => favori.recipe_id);
+
         console.log("recipeIds", recipeIds)
+
+        const image = await Image.findAll({
+            where: {
+                recipe_id: recipeIds
+            }
+        });
+        console.log("image", image)
+
 
         const tabRecipe = await Recipe.findAll({
             where: {
@@ -123,7 +133,8 @@ async function getFavoris(req, res) {
 
         res.status(201).json({
             favoris: favoris,
-            recipes: tabRecipe
+            recipes: tabRecipe,
+            img: image
         });
     } catch (error) {
         console.error("Error:", error);
