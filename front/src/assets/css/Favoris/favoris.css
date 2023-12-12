@@ -19,9 +19,17 @@
 
 .imgRecipe{
     width: 35em;
+    flex: 1;
 }
 
 .textFavoris {
     display: flex;
 
+}
+.imageFavoris {
+flex: 1;
+}
+
+.recipeFavrois {
+    flex: 3;
 }

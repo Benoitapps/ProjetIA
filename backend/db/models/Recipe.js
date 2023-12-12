@@ -1,3 +1,4 @@
+const {DataTypes} = require("sequelize");
 module.exports = function (connection) {
     const { DataTypes, Model } = require("sequelize");
   
@@ -13,6 +14,10 @@ module.exports = function (connection) {
           type: DataTypes.TEXT,
           allowNull: false,
         },
+       preparation:{
+          type: DataTypes.TEXT,
+          allowNull: true,
+       },
         
       },
       {
