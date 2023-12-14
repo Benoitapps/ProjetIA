@@ -1,5 +1,7 @@
 const bot = require("../bot/bot").bot;
 
+const { Recipe, Ingredient } = require("../db");
+
 require("dotenv").config({ path: ".env.local", override: true });
 
 async function getRecipes(req, res) {
@@ -15,7 +17,16 @@ async function getRecipes(req, res) {
             et tu devras répondre à toutes les questions que je te poserai en tant que chef étoilé.
         `;
 
-        const question = `
+        console.log("before recipes-----------------------------------------")
+        const recipes = await Recipe.findAll({
+            include: [{
+                model: Ingredient,
+            }],
+        });
+        console.log("after recipes-----------------------------------------")
+        console.log(recipes)
+
+        const question_old = `
             Je veux, dans un premier temps, que tu me donnes la description (moins de 300 caractères) et le temps de préparation total de cette recette : ${req.body.recipe}.
             Je veux dans un second temps, que tu me donnes 3 autres recettes (avec l'ingrédient principal en commun)
             qui sont similaires à celle que je t'ai donné, avec une description (moins de 300 caractères) et le temps de préparation total.
@@ -45,8 +56,8 @@ async function getRecipes(req, res) {
             Je ne veux pas d'autres informations inutiles, je veux que ta réponse ne soit que du JSON.
         `;
 
-        const answer = await bot(contextBot, question);
-        const answerJsonObject = JSON.parse(answer);
+        // const answer = await bot(contextBot, question);
+        const answerJsonObject = JSON.parse(recipes);
 
         res.status(200).json(answerJsonObject);
 
