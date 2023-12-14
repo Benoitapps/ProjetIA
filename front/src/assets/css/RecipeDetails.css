@@ -37,3 +37,9 @@
     overflow: auto;
     height: 3em;
 }
+
+.commentaireItem{
+    display: flex;
+    flex-direction: row;
+    border: solid 1px black;
+}

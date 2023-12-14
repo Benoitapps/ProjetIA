@@ -1,4 +1,6 @@
 const Comment = require("../db").Comment;
+const User = require("../db").User;
+
 
 async function addComment(req, res) {
     try {
@@ -56,11 +58,11 @@ async function deleteComment(req, res) {
 
 async function getComment(req, res) {
     try {
-        if (!req.body?.recipeId) {
+        if (!req.params?.recipeId) {
             return res.status(400).json({ error: "Missing parameters" });
         }
 
-        const recipeId = req.body.recipeId;
+        const recipeId = req.params?.recipeId;
 
         const comment = await Comment.findAll({
           where: {
@@ -68,8 +70,28 @@ async function getComment(req, res) {
           }
         });
 
+        console.log("comment11", comment)
+
+
+        const recupName =  async () => {
+            let tab = [];
+            const com = {};
+            for (const item of comment) {
+            const user = await User.findOne({ id: item.user_id });
+            console.log("user", user)
+            com.name = user.name;
+            com.commentaire = item.message;
+            com.note = item.note;
+            tab.push(com);
+            console.log("latab",tab)
+        }
+        return tab;
+        }
+
+        const commentaire = await recupName();
+
         res.status(201).json({
-            comment: comment,
+            comment: commentaire,
         });
     } catch (error) {
         console.error("Error:", error);

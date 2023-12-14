@@ -4,7 +4,8 @@ import RecipeResume from './RecipeResume.jsx';
 import RecipeIngredients from './RecipeIngredients.jsx';
 import RecipePreparation from './RecipePreparation.jsx';
 import StarFavoris from '../Favoris/StarFavoris.jsx';
-import {getRecipe} from '../../hook/recipeDetails/RecipeDetails.js'
+import {getRecipe} from '../../hook/recipeDetails/RecipeDetails.js';
+import CommentPage from "../Comment/CommentPage.jsx";
 import '@css/RecipeDetails.css';
 
 function RecipeDes({recipeId}) {
@@ -34,7 +35,7 @@ function RecipeDes({recipeId}) {
         <>
             <div className="flexStar">
                 <div><RecipeResume name={recipeName}/></div>
-               <div> <StarFavoris name={recipeName} id={ 11}/></div>
+               <div> <StarFavoris name={recipeName} id={ recipeId}/></div>
 
             </div>
             <div className="imgRecipe">
@@ -45,6 +46,8 @@ function RecipeDes({recipeId}) {
             </div>
             <RecipeIngredients ingredients={recipeIng} />
             <RecipePreparation preparation={recipePrep} />
+
+            <CommentPage recipeId={recipeId} />
 
         </>
     )
