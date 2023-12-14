@@ -117,13 +117,6 @@ async function getFavoris(req, res) {
 
         console.log("recipeIds", recipeIds)
 
-        const image = await Image.findAll({
-            where: {
-                recipe_id: recipeIds
-            }
-        });
-        console.log("image", image)
-
 
         const tabRecipe = await Recipe.findAll({
             where: {
@@ -134,7 +127,6 @@ async function getFavoris(req, res) {
         res.status(201).json({
             favoris: favoris,
             recipes: tabRecipe,
-            img: image
         });
     } catch (error) {
         console.error("Error:", error);

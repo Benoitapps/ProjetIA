@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+
 function PreferenceInput({ addFoodName }) {
     const [name, setName] = useState('');
 
