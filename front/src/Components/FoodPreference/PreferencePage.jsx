@@ -37,9 +37,9 @@ function PreferencePage() {
     };
     return (
         <>
-            <div className='allPref'>
+            <div className='preferences'>
                 <PreferenceInput addFoodName={addFoodName} />
-                <div className='preffood'>
+                <div className='preferences__list'>
                     {
                         prefs?.length>0 ?
                         prefs.map((pref, index) => (
@@ -47,7 +47,6 @@ function PreferencePage() {
                         )):<p>Pas de preferences</p>
                     }
                     </div>
-
                 </div>
         </>
     );
