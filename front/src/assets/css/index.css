@@ -29,10 +29,6 @@
   box-sizing: border-box;
 }
 
-*:focus {
-  outline: 1px solid var(--primary);
-}
-
 html,
 body {
   height: 100%;
@@ -84,4 +80,9 @@ h4,
 h5,
 h6 {
   font-style: normal;
+}
+
+input:focus,
+button:focus {
+  outline: 1px solid var(--primary);
 }

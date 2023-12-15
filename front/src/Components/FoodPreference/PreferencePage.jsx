@@ -14,7 +14,6 @@ function PreferencePage() {
             const result = await addFoodPreference(foodname);
             getFood();
         }
-
     };
 
     const getFood = async () => {
@@ -39,15 +38,15 @@ function PreferencePage() {
         <>
             <div className='preferences'>
                 <PreferenceInput addFoodName={addFoodName} />
-                <div className='preferences__list'>
+                <ul className='preferences__list'>
                     {
                         prefs?.length>0 ?
                         prefs.map((pref, index) => (
                             <PreferenceItem name={pref.name} key={index} id={pref.id} deleteFood={deleteFood} />
                         )):<p>Pas de preferences</p>
                     }
-                    </div>
-                </div>
+                </ul>
+            </div>
         </>
     );
 }
