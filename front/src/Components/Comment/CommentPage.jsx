@@ -6,7 +6,7 @@ function CommentPage({recipeId}) {
 
     return (
         <>
-            <h1> Mes Commentaire </h1>
+            <h1>  Commentaires </h1>
 
             <div > <CommentAdd recipeId={recipeId}/></div>
             <div > <CommentList recipeId={recipeId}/> </div>

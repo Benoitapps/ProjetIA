@@ -9,7 +9,6 @@ function CommentList({recipeId}) {
     const fetchComment = async () => {
         const data = await getComment(recipeId);
         setComment(data.comment);
-        console.log("comment", data.comment)
     }
 
     useEffect(() => {

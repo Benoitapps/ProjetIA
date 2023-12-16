@@ -17,7 +17,6 @@ function RecipeDes({recipeId}) {
 
     const fetchRecipe = async () => {
         const data = await getRecipe(recipeId);
-        console.log(data)
         setRecipeDes(data.description);
         setRecipeName(data.name);
         setRecipeIng(data.ingredients);

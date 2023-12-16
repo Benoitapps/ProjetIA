@@ -12,7 +12,6 @@ function RecomendationList({recipeId}) {
     const fetchRecipe = async () => {
         const data = await getRecomendation(recipeId);
         setRecipe(data.answer)
-        console.log(data.answer)
     }
 
     useEffect(() => {
