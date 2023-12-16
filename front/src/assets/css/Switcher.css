@@ -1,0 +1,25 @@
+.switcher {
+    display: flex;
+    background: var(--background);
+    border-radius: 25px;
+    width: fit-content;
+    margin: 0 auto;
+    padding-top: 25px;
+    box-shadow: var(--shadow);
+    font-size: 1rem; /* 16px */
+}
+
+.switcher__item {
+    display: flex;
+}
+
+.switcher__item a {
+    padding: 16px 24px;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.switcher__item--active a {
+    background: var(--primary);
+    color: var(--text-white);
+}
