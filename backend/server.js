@@ -10,6 +10,7 @@ const searchRoutes = require("./routes/search");
 const favorisRoutes = require("./routes/favoris");
 const commentRoutes = require("./routes/comment");
 const foodPreferenceRoutes = require("./routes/foodPreference");
+const recomendationRoutes = require("./routes/recomendation");
 
 const app = express();
 
@@ -32,6 +33,7 @@ app.use("/search", searchRoutes);
 app.use("/favoris", favorisRoutes);
 app.use("/comment", commentRoutes);
 app.use("/foodPreference", foodPreferenceRoutes);
+app.use("/recomendation", recomendationRoutes);
 
 const port = process.env.PORT_BACK;
 const hostname = process.env.DOMAIN_NAME;

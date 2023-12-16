@@ -21,3 +21,25 @@
     justify-content: space-between;
 
 }
+
+.recomendations{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.imgrecomendation{
+    width: 40%;
+    height: 100%;
+}
+
+.descriptionReco{
+    overflow: auto;
+    height: 3em;
+}
+
+.commentaireItem{
+    display: flex;
+    flex-direction: row;
+    border: solid 1px black;
+}

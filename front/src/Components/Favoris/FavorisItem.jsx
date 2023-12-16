@@ -19,7 +19,6 @@ function FavorisItem() {
             const data = await getAllFavoris();
             if(data.recipes.length>0) {
                 setFavoris(data.recipes); // Supposant que 'data' est un objet qui a une propriété 'recipes'
-                setImg(data.img);
                 setVide(false);
             }else{
                 setVide(true);
@@ -49,7 +48,7 @@ function FavorisItem() {
                 <div className="CardRecipe" key={index} >
                     <div className="textFavoris" onClick={() => redirect(recipe.id)}>
                     <div className="imageFavoris">
-                        <FavorisImage  img={img[index].src}/>
+                        <FavorisImage  img={recipe.src}/>
                     </div>
                     <div className="recipeFavrois">
                         <FavorisRecipe
