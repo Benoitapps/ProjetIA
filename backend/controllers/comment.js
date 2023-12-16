@@ -1,14 +1,19 @@
+const {getConnectedUser} = require("../services/userToken");
 const Comment = require("../db").Comment;
 const User = require("../db").User;
 
 
 async function addComment(req, res) {
     try {
-        if (!req.body?.userId || !req.body?.recipeId || !req.body?.message || !req.body?.note) {
+        if ( !req.body?.recipeId || !req.body?.message || !req.body?.note) {
             return res.status(400).json({ error: "Missing parameters" });
         }
+        const token = req.cookies.token;
+        console.log("token", token);
 
-        const userId = req.body.userId;
+        const userId = await getConnectedUser(token);
+        console.log(userId);
+
         const recipeId = req.body.recipeId;
         const message = req.body.message;
         const note = req.body.note;
@@ -73,20 +78,30 @@ async function getComment(req, res) {
         console.log("comment11", comment)
 
 
-        const recupName =  async () => {
+        const recupName = async () => {
             let tab = [];
-            const com = {};
+
+            console.log("comment.length", comment.length);
+
             for (const item of comment) {
-            const user = await User.findOne({ id: item.user_id });
-            console.log("user", user)
-            com.name = user.name;
-            com.commentaire = item.message;
-            com.note = item.note;
-            tab.push(com);
-            console.log("latab",tab)
-        }
-        return tab;
-        }
+                console.log("itemsfor", item);
+
+                const user = await User.findOne({ id: item.user_id });
+                console.log("user", user);
+
+                const com = {};
+
+                com.name = user.name;
+                com.commentaire = item.message;
+                com.note = item.note;
+
+                console.log("comPush", com);
+                tab.push(com);
+                console.log("latab", tab);
+            }
+
+            return tab;
+        };
 
         const commentaire = await recupName();
 
