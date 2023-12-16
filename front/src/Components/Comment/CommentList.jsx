@@ -2,19 +2,9 @@ import React, {useEffect, useState} from 'react'
 import CommentItem from './CommentItem.jsx';
 import {getComment} from "../../hook/Comment/getComment.js";
 
-function CommentList({recipeId}) {
+function CommentList({comments}) {
 
-    const [comments, setComment] = useState([]);
 
-    const fetchComment = async () => {
-        const data = await getComment(recipeId);
-        setComment(data.comment);
-    }
-
-    useEffect(() => {
-        fetchComment();
-
-    }, [])
 
     return (
         <>

@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { postComment } from '../../hook/Comment/postComment.js';
 
-function CommentAdd({recipeId}) {
+function CommentAdd({addComment}) {
 
     const [messages, setMessage] = useState('');
     const   [notes, setNote] = useState(1);
@@ -14,13 +14,7 @@ function CommentAdd({recipeId}) {
         setNote('1')
     };
 
-    const addComment = async (messages,notes) => {
-        try {
-            await postComment(recipeId,messages,notes);
-        } catch (error) {
-            console.error('Erreur lors de l\'ajout aux commentaire:', error);
-        }
-    }
+
 
     return (
         <form onSubmit={handleSubmit}>
