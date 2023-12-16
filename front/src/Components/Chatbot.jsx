@@ -1,13 +1,16 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import OpenAiWhite from '@img/openai-white.svg';
 import OpenAiOrange from '@img/openai-orange.svg';
 import Close from '@img/close.svg';
 import Send from '@img/send.svg';
 import '@css/Chatbot.css';
+import sendMessageToChatbot from "../hook/chatbot.js";
 
 export default function Chatbot() {
     const [isOpened, setIsOpened] = useState(false);
     const [messages, setMessages] = useState([]);
+    const [inputIsBlocked, setInputIsBlocked] = useState(false);
+    const chat = useRef(null);
 
     useEffect(() => {
         setMessages([
@@ -18,7 +21,16 @@ export default function Chatbot() {
         ]);
     }, []);
 
-    const sendMessage = (e) => {
+    useEffect(() => {
+        if (chat.current) {
+            document.querySelector('.chatbot__container__chat__message:last-child').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+            });
+        }
+    }, [messages]);
+
+    const sendMessage = async (e) => {
         e.preventDefault();
         const input = document.querySelector('.chatbot__container__input input');
         const message = input.value;
@@ -31,7 +43,25 @@ export default function Chatbot() {
                     text: message
                 }
             ]);
+
+            setInputIsBlocked(true);
             input.value = '';
+
+            await sendMessageToChatbot(message).then((response) => {
+                setInputIsBlocked(false);
+
+                setMessages([
+                    ...messages,
+                    {
+                        role: 'user',
+                        text: message
+                    },
+                    {
+                        role: 'bot',
+                        text: response.answer
+                    }
+                ]);
+            });
         }
     }
 
@@ -46,7 +76,7 @@ export default function Chatbot() {
                             <img src={Close} alt="Fermer le chatbot"/>
                         </button>
                     </div>
-                    <ul className="chatbot__container__chat">
+                    <ul className="chatbot__container__chat" ref={chat}>
                         {
                             messages.map((message, index) => {
                                 return (
@@ -71,7 +101,7 @@ export default function Chatbot() {
                         }
                     </ul>
                     <form className="chatbot__container__input" onSubmit={sendMessage}>
-                        <input type="text" placeholder="Ecrivez votre question"/>
+                        <input type="text" placeholder="Ecrivez votre question" disabled={inputIsBlocked}/>
                         <button type="submit">
                             <img src={Send} alt="Envoyer le message"/>
                         </button>
