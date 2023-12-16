@@ -5,9 +5,9 @@ function CommentItem({data}) {
     return (
         <>
             <div className="commentaireItem">
-            {data.name}:
-            {data.note}
-            {data.commentaire}
+            De:{data.name}:
+            Note:{data.note}
+            Commentaires:{data.commentaire}
             </div>
 
         </>
