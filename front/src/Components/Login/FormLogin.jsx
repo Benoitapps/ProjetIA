@@ -43,7 +43,7 @@ function FormTheme() {
                 </label>
                 <input
                     className="register-login__form__container__field__input"
-                    type="text"
+                    type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                 />
