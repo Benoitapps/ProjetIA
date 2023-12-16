@@ -1,10 +1,11 @@
 .register-login {
     display: flex;
+    height: calc(100vh - 80px);
 }
 
 .register-login__img {
     width: 50%;
-    height: 100vh;
+    height: 100%;
 }
 
 @media screen and (max-width: 768px){

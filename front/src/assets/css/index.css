@@ -27,11 +27,19 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) var(--text-white);
 }
 
-html,
-body {
-  height: 100%;
+*::-webkit-scrollbar {
+  appearance: none;
+  width: 8px;
+  background-color: var(--text-white);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--primary);
+  border-radius: 50px;
 }
 
 body {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Outlet, Link } from "react-router-dom";
 import '@css/NavBar.css';
+import Chatbot from './Chatbot.jsx';
 
 function NavBar() {
     return (
@@ -28,6 +29,8 @@ function NavBar() {
             </header>
 
             <Outlet />
+
+            <Chatbot />
         </>
     );
 }
