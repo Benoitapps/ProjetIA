@@ -1,46 +1,31 @@
-.allPref{
+.preferences {
+    max-width: 790px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.preferences__list {
     display: flex;
-    flex-direction: column;
-}
-
-.prefcube{
-    border: solid 1px black;
-    width: 150px;
-    margin: 10px;
-}
-
-.inputText{
-    display: flex;
-    justify-content: center;
-    margin-top: 5%;
-    margin-left: 20%;
-    margin-right: 20%;
-}
-
-.leinput{
-    width:40em;
-    height: 3em;
-    border-radius: 10px
-}
-
-.preffood{
-    display: flex;
-    margin-top: 5%;
-    flex-direction: row;
-    align-items: center;
-    margin-left: 20%;
-    margin-right: 20%;
     flex-wrap: wrap;
+    margin-top: 35px;
+    gap: 14px;
 }
 
-.flexDelete{
+.preferences__list__item {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--primary);
+    border-radius: var(--radius-prefer);
+    padding: 10px 14px;
 }
 
-.imagePref{
-    width: 25%;
-    height: 25%;
+.preferences__list__item svg {
+    cursor: pointer;
+}
+
+.preferences__list__item p {
+    color: var(--text-white);
+    font-size: 1rem; /* 16px */
 }

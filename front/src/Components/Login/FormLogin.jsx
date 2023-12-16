@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import login from '../../hook/login';
-import '@css/Register/RegisterForm.css';
+import '@css/RegisterLogin/RegisterLoginForm.css';
 
 function FormTheme() {
 
@@ -32,29 +32,40 @@ function FormTheme() {
   }
 
   return (
-    
-      <form onSubmit={handleSubmit} className='main'>
-        <p>Se connecter</p>
-        <label htmlFor="email">Email</label>
-        <input
-          className='inputForm'
-          id="email"
-          type="text"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <label htmlFor="password">Mot de passe</label>
-        <input
-          className='inputForm'
-          id="password"
-          type="text"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <br />
-        <input type="submit" value="Se Conecter" />
+      <form onSubmit={handleSubmit} className="register-login__form">
+        <div className="register-login__form__container">
+            <div className="register-login__form__container__field">
+                <label
+                    htmlFor="email"
+                    className="register-login__form__container__field__label"
+                >
+                    Email
+                </label>
+                <input
+                    className="register-login__form__container__field__input"
+                    type="text"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
+            </div>
+            <div>
+                <label
+                    htmlFor="password"
+                    className="register-login__form__container__field__label"
+                >
+                    Mot de passe
+                </label>
+                <input
+                    className="register-login__form__container__field__input"
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+            </div>
+        </div>
+        <input type="submit" value="Se Connecter" className="register-login__form__submit"/>
       </form>
-    
+
   );
 }
 

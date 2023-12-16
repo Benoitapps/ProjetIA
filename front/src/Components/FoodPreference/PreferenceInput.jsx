@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import '@css/Preference/PreferencesInput.css';
 
 
 function PreferenceInput({ addFoodName }) {
@@ -11,12 +12,10 @@ function PreferenceInput({ addFoodName }) {
     };
 
     return (
-        <div className='inputText'>
         <form onSubmit={handleSubmit}>
-            <input className="leinput" type="text" value={name} onChange={(e) => setName(e.target.value)} />
+            <input className="preferences__input" type="text" value={name} onChange={(e) => setName(e.target.value)} />
             {/*<button type="submit">Ajouter</button>*/}
         </form>
-        </div>
     );
 }
 
