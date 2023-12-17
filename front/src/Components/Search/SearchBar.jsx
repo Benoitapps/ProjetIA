@@ -3,9 +3,8 @@ import searchRecipe from '../../hook/search';
 import '@css/Search/SearchBar.css';
 import loading from '@img/loading.gif';
 
-function SearchBar({ setRecipes }) {
+function SearchBar({ setRecipes, setIsLoading, isLoading }) {
     const [searchValue, setSearchValue] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
     const handleClick = async () => {

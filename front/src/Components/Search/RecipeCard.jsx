@@ -8,7 +8,6 @@ function RecipeCard({ recipe }) {
             <div className="recipe-content">
               <div className="recipe-header">
                 <h2 className="recipe-title">{recipe.name}</h2>
-                <p className="recipe-time">{recipe.time}</p>
               </div>
               <div className="recipe-body">
                 <p className="recipe-description">{recipe.description}</p>

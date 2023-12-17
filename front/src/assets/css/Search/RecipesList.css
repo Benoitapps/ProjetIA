@@ -14,3 +14,11 @@
   grid-gap: 20px;
   width: 100%;
 }
+
+.recipes-list-loading {
+  text-align: center;
+}
+
+.recipes-list-empty {
+  text-align: center;
+}
