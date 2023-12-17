@@ -14,15 +14,14 @@ module.exports = function (connection) {
           type: DataTypes.TEXT,
           allowNull: false,
         },
-       preparation:{
-          type: DataTypes.TEXT,
-          allowNull: true,
-       },
-      src: {
-          type: DataTypes.TEXT, // Change the type to VARCHAR(1000)
-          allowNull: true,
-      },
-        
+        preparation:{
+            type: DataTypes.TEXT,
+            allowNull: true,
+        },
+        src: {
+            type: DataTypes.TEXT, // Change the type to VARCHAR(1000)
+            allowNull: true,
+        },
       },
       {
         tableName: "recipes",
