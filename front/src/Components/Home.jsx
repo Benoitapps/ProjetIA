@@ -5,13 +5,14 @@ import '@css/Home.css';
 
 function HomePage() {
     const [recipes, setRecipes] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     return (
         <>
             <div className="hero">
-                <SearchBar setRecipes={setRecipes}/>
+                <SearchBar setRecipes={setRecipes} setIsLoading={setIsLoading} isLoading={isLoading}/>
             </div>
-            <RecipesList recipes={recipes}/>
+            <RecipesList recipes={recipes} isLoading={isLoading}/>
         </>
     )
 }

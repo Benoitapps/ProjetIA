@@ -10,12 +10,13 @@ const searchRoutes = require("./routes/search");
 const favorisRoutes = require("./routes/favoris");
 const commentRoutes = require("./routes/comment");
 const foodPreferenceRoutes = require("./routes/foodPreference");
+const recomendationRoutes = require("./routes/recomendation");
 
 const app = express();
 
 // Use to allow cross-origin requests
 app.use(cors({
-    origin: [`${process.env.URL}:${process.env.PORT_FRONT}`, 'http://loclhost:3000/'],
+    origin: [`${process.env.URL}:${process.env.PORT_FRONT}`, 'http://localhost:3000/'],
 
     credentials : true,
   }));
@@ -32,6 +33,7 @@ app.use("/search", searchRoutes);
 app.use("/favoris", favorisRoutes);
 app.use("/comment", commentRoutes);
 app.use("/foodPreference", foodPreferenceRoutes);
+app.use("/recomendation", recomendationRoutes);
 
 const port = process.env.PORT_BACK;
 const hostname = process.env.DOMAIN_NAME;

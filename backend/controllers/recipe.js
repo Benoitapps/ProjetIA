@@ -1,12 +1,10 @@
 const {mapFinderOptions} = require("sequelize/lib/utils");
 const Recipe = require("../db").Recipe;
 const Ingredient = require("../db").Ingredient;
-const Image = require("../db").Image;
 const User = require("../db").User;
 const {getConnectedUser} = require("../services/userToken");
 
 const bot = require("../bot/bot").bot;
-const botImage = require("../bot/bot").botImage;
 
 require("dotenv").config({ path: ".env.local", override: true });
 
@@ -34,8 +32,6 @@ async function getRecipeVerif(req, res) {
      const ingredients = await Ingredient.findAll({ where: { recipe_id: recette } });
      let tabIngredients = [];
 
-     const image = await Image.findOne({ where: { recipe_id: recette } });
-
      ingredients.forEach(element => {
         tabIngredients.push(element.name);
      });
@@ -48,7 +44,7 @@ async function getRecipeVerif(req, res) {
         description: recipe.description,
         ingredients: tabIngredients,
         preparation: recipe.preparation,
-        image: image.src
+        image: recipe.src
 
     })
 

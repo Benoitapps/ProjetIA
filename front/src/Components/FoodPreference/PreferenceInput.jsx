@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import '@css/Preference/PreferencesInput.css';
 
+
 function PreferenceInput({ addFoodName }) {
     const [name, setName] = useState('');
 
