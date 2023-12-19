@@ -17,11 +17,17 @@ function CommentAdd({addComment}) {
 
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input className="commentMessage__input" type="text" value={messages} onChange={(e) => setMessage(e.target.value)} />
-            <input className="commentNote" type="number" min="1" max="5"  value={notes} onChange={(e) => setNote(e.target.value)} />
+        <form className="recipe__details__comments__form" onSubmit={handleSubmit}>
+            <input className="commentNote" type="number" min="1" max="5" value={notes}
+                   onChange={(e) => setNote(e.target.value)}/>
+            <textarea
+                className="commentMessage__input"
+                value={messages}
+                onChange={(e) => setMessage(e.target.value)}
+                placeholder="Ce plat est délicieux !"
+            />
 
-            <button type="submit">Ajouter</button>
+            <button type="submit">Poster</button>
         </form>
     );
 }

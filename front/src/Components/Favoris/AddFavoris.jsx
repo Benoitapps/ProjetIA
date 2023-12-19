@@ -23,7 +23,7 @@ function StarFavoris({ name,id, handleClick }) {
 
     useEffect(() => {
         const res = getFavoris()
-    }, [refresh])
+    }, [refresh,id])
 
     const clickStar = () => {
         if (favoris === false) {

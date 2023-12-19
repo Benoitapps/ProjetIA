@@ -1,7 +1,7 @@
 
 import RecipeDes from './RecipeDes.jsx';
-import RecomendationPage from '../Recomendations/RecomendationPage.jsx';
-import '@css/RecipeDetails.css';
+import RecommendationPage from '../Recommendations/RecommendationPage.jsx';
+import '@css/Recipe/RecipeDetails.css';
 import {useParams } from "react-router-dom";
 import {getRecipe} from "../../hook/recipeDetails/RecipeDetails.js";
 import {useEffect, useState} from "react";
@@ -21,14 +21,10 @@ function RecipePageDetails() {
     }, [])
 
     return (
-        <>
-
-            <div className="recette">
-                <div className="details"> <RecipeDes recipeId={recipeId} data={data}/> </div>
-                <div className="recomendations"> <RecomendationPage recipeId={recipeId} /> </div>
-            </div>
-
-        </>
+        <div className="recipe">
+            <RecipeDes recipeId={recipeId}  data={data}/>
+            <RecommendationPage recipeId={recipeId}/>
+        </div>
     )
 }
 

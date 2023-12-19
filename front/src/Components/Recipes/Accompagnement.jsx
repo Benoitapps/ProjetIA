@@ -9,9 +9,18 @@ function Accompagnement({ recipeName }) {
         setAcc(data.answer);
     };
 
+    useEffect(() => {
+        setAcc('');
+    }, [recipeName]);
+
     return (
         <>
-            <button type="button" onClick={fetchAccompagnement}>Proposer Accompagnement</button>
+            <input
+                type="button"
+                className="recipe__details__generation"
+                value="Proposer des accompagnements"
+                onClick={fetchAccompagnement}
+            />
             <div className="Accompagnement">
                 <p>{acc}</p>
             </div>

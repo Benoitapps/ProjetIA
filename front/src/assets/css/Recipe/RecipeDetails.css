@@ -1,0 +1,239 @@
+.recipe {
+    display: flex;
+}
+
+.recipe__details {
+    flex: 1;
+    padding: 50px 145px;
+}
+
+.recipe__details__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.recipe__details__head h2 {
+    font-size: 2.25rem; /* 36px */
+    font-style: normal;
+    font-weight: 700;
+    line-height: 0.72;
+}
+
+.recommendations {
+    position: sticky;
+    top: 80px;
+    width: 100%;
+    max-width: 450px;
+    height: calc(100vh - 80px);
+    overflow-y: auto;
+    padding: 30px 34px;
+    box-shadow: var(--reco-border);
+}
+
+.recommendations h4 {
+    text-align: center;
+    font-size: 1.5rem; /* 24px */
+    font-style: normal;
+    font-weight: 600;
+}
+
+.recommendations__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.recommendations__list__recipe {
+    width: 100%;
+    height: 144px;
+    background-color: var(--text-white);
+    box-shadow: var(--shadow);
+    border-radius: var(--radius-card);
+}
+
+.recommendations__list__recipe a {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    height: 100%;
+    padding: 12px;
+}
+
+.recommendations__list__recipe__img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.recommendations__list__recipe__img img {
+    width: 100%;
+    height: 100%;
+}
+
+.recommendations__list__recipe__text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.recommendations__list__recipe__text h5 {
+    font-size: 1.25rem; /* 20px */
+    font-style: normal;
+    font-weight: 700;
+}
+
+.recommendations__list__recipe__text__description {
+    overflow-y: auto;
+    scrollbar-width: none;
+    color: var(--text-grey);
+    font-size: 0.875rem; /* 14px */
+}
+
+.recommendations__list__recipe__text__description::-webkit-scrollbar {
+    display: none;
+}
+
+.recipe__details__image {
+    margin-top: 40px;
+    width: 100%;
+    max-width: 700px;
+    aspect-ratio: 1/1;
+    border-radius: var(--radius-card);
+    overflow: hidden;
+}
+
+.recipe__details__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.favorite-button {
+    background: none;
+    border: none;
+}
+
+.favorite-button svg {
+    width: 30px;
+}
+
+.favorite-button:focus {
+    outline: none;
+}
+
+.recipe__details__description {
+    margin-top: 40px;
+    font-size: 1.5rem; /* 24px */
+}
+
+.recipe__details section {
+    margin-top: 80px;
+}
+
+.recipe__details section h3 {
+    font-size: 2rem; /* 32px */
+    font-style: normal;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.recipe__details__generation {
+    background: var(--primary);
+    padding: 16px 24px;
+    border-radius: 50px;
+    border: none;
+    color: var(--text-white);
+    font-size: 1rem; /* 16px */
+    margin-top: 30px;
+}
+
+.recipe__details__generation:active {
+    background: var(--primary-hover);
+}
+
+.recipe__details__ingredients__list {
+    margin-left: 20px;
+    font-size: 1.25rem; /* 20px */
+}
+
+.recipe__details__ingredients__list li {
+    list-style: initial;
+}
+
+.recipe__details__preparation{
+    font-size: 1.25rem; /* 20px */
+}
+
+.recipe__details__comments__form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.recipe__details__comments__form textarea {
+    border: none;
+    height: 205px;
+    padding: 15px 20px;
+    box-shadow: var(--shadow);
+    border-radius: var(--radius-input);
+    font-size: 0.875rem; /* 14px */
+}
+
+.recipe__details__comments__form textarea::placeholder {
+    color: var(--text-grey);
+}
+
+.recipe__details__comments__form button {
+    background: var(--primary);
+    width: 100%;
+    border-radius: 50px;
+    padding: 16px 24px;
+    border: none;
+    color: var(--text-white);
+    font-size: 1rem; /* 16px */
+}
+
+.recipe__details__comments__form button:active {
+    background: var(--primary-hover);
+}
+
+.recipe__details__comments__allcomments ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.comment {
+    background: var(--text-white);
+    padding: 20px;
+    border-radius: 4px;
+    box-shadow: var(--shadow);
+}
+
+.comment__head {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.comment__head__avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50px;
+    margin-right: 10px;
+}
+
+.comment__head__name {
+    font-size: 1.25rem; /* 20px */
+    font-weight: 600;
+}
+
+.comment__body {
+    margin-top: 10px;
+    color: var(--text-grey);
+}

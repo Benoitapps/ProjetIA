@@ -76,7 +76,8 @@ a,
 span,
 input,
 button,
-label {
+label,
+textarea {
   font-family: "Montserrat", sans-serif;
   color: var(--text-black);
 }
@@ -91,6 +92,7 @@ h6 {
 }
 
 input:focus,
-button:focus {
+button:focus,
+textarea:focus {
   outline: 1px solid var(--primary);
 }
