@@ -1,12 +1,11 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import RecipeResume from './RecipeResume.jsx';
 import RecipeIngredients from './RecipeIngredients.jsx';
 import RecipePreparation from './RecipePreparation.jsx';
 import StarFavoris from '../Favoris/StarFavoris.jsx';
 import {getRecipe} from '../../hook/recipeDetails/RecipeDetails.js';
 import CommentPage from "../Comment/CommentPage.jsx";
-import '@css/RecipeDetails.css';
+import '@css/Recipe/RecipeDetails.css';
 
 function RecipeDes({recipeId}) {
     const [recipeDes, setRecipeDes] = useState("");
@@ -31,11 +30,10 @@ function RecipeDes({recipeId}) {
 
 
     return (
-        <>
-            <div className="flexStar">
-                <div><RecipeResume name={recipeName}/></div>
-               <div> <StarFavoris name={recipeName} id={ recipeId}/></div>
-
+        <div className="recipe__details">
+            <div className="recipe__details__favorite">
+                <h1>{recipeName}</h1>
+                <StarFavoris name={recipeName} id={ recipeId}/>
             </div>
             <div className="imgRecipe">
                 <img src={recipeImg} alt="image de la recette" />
@@ -48,7 +46,7 @@ function RecipeDes({recipeId}) {
 
             <CommentPage recipeId={recipeId} />
 
-        </>
+        </div>
     )
 }
 
