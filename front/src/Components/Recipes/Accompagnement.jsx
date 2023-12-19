@@ -6,11 +6,8 @@ function Accompagnement({ recipeName }) {
 
     const fetchAccompagnement = async () => {
         const data = await getAccompagnement(recipeName);
-        console.log(data.answer);
         setAcc(data.answer);
     };
-
-
 
     return (
         <>

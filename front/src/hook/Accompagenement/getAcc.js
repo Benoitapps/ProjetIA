@@ -11,7 +11,6 @@ const getAccompagnement = async (question) => {
 
     if (result.ok) {
         const data = await result.json();
-        console.log(data);
         return data;
     } else {
         throw new Error("La requête a échoué", result);

@@ -28,7 +28,7 @@ function RecipeDes({recipeId}) {
     useEffect(() => {
         fetchRecipe();
 
-    }, [])
+    }, [recipeId])
 
 
     return (
