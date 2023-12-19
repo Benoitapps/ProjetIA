@@ -3,7 +3,7 @@ import FavorisImage from './FavorisImage.jsx';
 import FavorisRecipe from './FavorisRecipe.jsx';
 import { getAllFavoris } from '../../hook/favoris/getAllMyFavoris.js';
 import '@css/Favoris/favoris.css';
-import StarFavoris from '../Favoris/StarFavoris.jsx';
+import AddFavoris from './AddFavoris.jsx';
 import { useNavigate} from 'react-router-dom';
 
 
@@ -59,7 +59,7 @@ function FavorisItem() {
                     </div>
                     </div>
                     <div onClick={StarClick}>
-                        <div style={{ width: '4em' }}> <StarFavoris name={recipe.name} id={recipe.id} /></div>
+                        <div style={{ width: '4em' }}> <AddFavoris name={recipe.name} id={recipe.id} /></div>
                     </div>
                 </div>
             )) : <div>Vous n'avez pas de favoris</div>}

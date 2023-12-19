@@ -1,8 +1,7 @@
-import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import RecipeIngredients from './RecipeIngredients.jsx';
 import RecipePreparation from './RecipePreparation.jsx';
-import StarFavoris from '../Favoris/StarFavoris.jsx';
+import AddFavoris from '../Favoris/AddFavoris.jsx';
 import {getRecipe} from '../../hook/recipeDetails/RecipeDetails.js';
 import CommentPage from "../Comment/CommentPage.jsx";
 import '@css/Recipe/RecipeDetails.css';
@@ -26,26 +25,22 @@ function RecipeDes({recipeId}) {
     useEffect(() => {
         fetchRecipe();
 
-    }, [])
+    }, [recipeId])
 
 
     return (
         <div className="recipe__details">
-            <div className="recipe__details__favorite">
-                <h1>{recipeName}</h1>
-                <StarFavoris name={recipeName} id={ recipeId}/>
+            <div className="recipe__details__head">
+                <h2>{recipeName}</h2>
+                <AddFavoris name={recipeName} id={ recipeId}/>
             </div>
-            <div className="imgRecipe">
+            <div className="recipe__details__image">
                 <img src={recipeImg} alt="image de la recette" />
             </div>
-            <div className="description">
-                <p>{recipeDes}</p>
-            </div>
+            <p className="recipe__details__description">{recipeDes}</p>
             <RecipeIngredients ingredients={recipeIng} />
             <RecipePreparation preparation={recipePrep} />
-
             <CommentPage recipeId={recipeId} />
-
         </div>
     )
 }
