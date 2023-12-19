@@ -6,6 +6,7 @@ import RecipePreparation from './RecipePreparation.jsx';
 import StarFavoris from '../Favoris/StarFavoris.jsx';
 import {getRecipe} from '../../hook/recipeDetails/RecipeDetails.js';
 import CommentPage from "../Comment/CommentPage.jsx";
+import Accompagnement from "./Accompagnement.jsx";
 import '@css/RecipeDetails.css';
 
 function RecipeDes({recipeId}) {
@@ -45,6 +46,7 @@ function RecipeDes({recipeId}) {
             </div>
             <RecipeIngredients ingredients={recipeIng} />
             <RecipePreparation preparation={recipePrep} />
+            <Accompagnement recipeName={recipeName}/>
 
             <CommentPage recipeId={recipeId} />
 
