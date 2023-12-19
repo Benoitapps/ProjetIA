@@ -1,6 +1,6 @@
-const getRecomendation = async (id) => {
+const getRecommendation = async (id) => {
     try {
-        const result = await fetch(`http://localhost:3000/recomendation/${id}`, {
+        const result = await fetch(`http://localhost:3000/recommendation/${id}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -20,4 +20,4 @@ const getRecomendation = async (id) => {
     }
 }
 
-export {getRecomendation};
+export {getRecommendation};
