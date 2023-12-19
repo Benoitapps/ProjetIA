@@ -1,11 +1,11 @@
 import React from 'react';
-import StarFavoris from '../Favoris/StarFavoris.jsx';
+import AddFavoris from './AddFavoris.jsx';
 
 function FavorisRecipe({ name, description, id, handleStarClick }) {
     return (
         <>
             <p>{name}</p>
-            {/*<StarFavoris name={name} id={id} onClick={handleStarClick} /> /!* Utilisez onStarClick ici *!/*/}
+            {/*<AddFavoris name={name} id={id} onClick={handleStarClick} /> /!* Utilisez onStarClick ici *!/*/}
             <p>{description}</p>
         </>
     );

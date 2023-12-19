@@ -30,13 +30,12 @@ function CommentPage({recipeId}) {
 
 
     return (
-        <>
-            <h1>  Commentaires </h1>
+        <section className="recipe__details__comments">
+            <h3>Poster un commentaire</h3>
 
-            <div > <CommentAdd addComment={addComment}/></div>
-            <div > <CommentList comments={comments}/> </div>
-
-        </>
+            <CommentAdd addComment={addComment}/>
+            <CommentList comments={comments}/>
+        </section>
     )
 }
 
