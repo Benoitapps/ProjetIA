@@ -16,7 +16,7 @@ function CommentPage({recipeId}) {
     useEffect(() => {
         fetchComment();
 
-    }, [])
+    }, [recipeId])
 
     const addComment = async (messages,notes) => {
         try {
