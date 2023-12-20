@@ -29,6 +29,7 @@
   box-sizing: border-box;
   scrollbar-width: thin;
   scrollbar-color: var(--primary) var(--text-white);
+  scroll-behavior: smooth;
 }
 
 *::-webkit-scrollbar {

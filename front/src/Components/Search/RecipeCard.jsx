@@ -1,5 +1,6 @@
 import React from 'react';
 import '@css/Search/RecipeCard.css';
+import { Link } from "react-router-dom";
 
 function RecipeCard({ recipe }) {
     return (
@@ -11,6 +12,9 @@ function RecipeCard({ recipe }) {
               </div>
               <div className="recipe-body">
                 <p className="recipe-description">{recipe.description}</p>
+              </div>
+              <div className="recipe-footer">
+                <Link to={`/recipe/${recipe.id}`} className="recipe-link">Voir la recette</Link>
               </div>
             </div>
         </div>
