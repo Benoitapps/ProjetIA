@@ -12,11 +12,7 @@ function RecipeRes( {preparation}) {
                     <li key={index}>{index + ". " + etape}</li>
                 ))}
             </ul>
-            <input
-                type="button"
-                className="recipe__details__generation"
-                value="Proposer des accompagnements"
-            />
+
         </section>
     )
 }
