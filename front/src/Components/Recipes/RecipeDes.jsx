@@ -7,6 +7,10 @@ import CommentPage from "../Comment/CommentPage.jsx";
 import Accompagnement from "./Accompagnement.jsx";
 import RecipeNote from "../RecipeNote.jsx";
 import '@css/Recipe/RecipeDetails.css';
+import mail from "@img/mail.svg";
+import clipboard from "@img/clipboard.svg";
+import twitter from "@img/twitter.svg";
+
 
 function RecipeDes({recipeId}) {
     const [recipeDes, setRecipeDes] = useState("");
@@ -33,12 +37,32 @@ function RecipeDes({recipeId}) {
         fetchRecipe();
     }, [recipeId])
 
+    const shareOnMail = () => {
+        // TODO: To implement
+        window.open(`mailto:?subject=${recipeName}&body=${recipeDes}`);
+    }
+
+    const shareOnTwitter = () => {
+        // TODO: To implement
+        window.open(`https://twitter.com/intent/tweet?text=Hello%20world`);
+    }
+
+    const copyToClipboard = async () => {
+        // TODO: To implement
+        let text = document.querySelector('h2').innerHTML;
+        navigator.clipboard.writeText(text);
+    }
 
     return (
         <div className="recipe__details">
             <div className="recipe__details__head">
                 <h2>{recipeName}</h2>
-                <AddFavoris name={recipeName} id={ recipeId}/>
+                <div>
+                    <AddFavoris name={recipeName} id={ recipeId}/>
+                    <img src={twitter} alt="" onClick={shareOnTwitter} style={{cursor: "pointer"}}/>
+                    <img src={mail} alt="" onClick={shareOnMail} style={{cursor: "pointer"}}/>
+                    <img src={clipboard} alt="" onClick={copyToClipboard} style={{cursor: "pointer"}}/>
+                </div>
             </div>
             <RecipeNote notes={notes} starSize="big" />
             <div className="recipe__details__image">

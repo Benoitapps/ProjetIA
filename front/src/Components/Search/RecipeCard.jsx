@@ -5,7 +5,9 @@ import { Link } from "react-router-dom";
 function RecipeCard({ recipe }) {
     return (
         <div className="recipe-card">
-            <div className="recipe-picture"></div>
+            <div className="recipe-picture">
+              <img src={recipe.src} alt={recipe.name} />
+            </div>
             <div className="recipe-content">
               <div className="recipe-header">
                 <h2 className="recipe-title">{recipe.name}</h2>

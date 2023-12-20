@@ -12,7 +12,7 @@ function RecipePageDetails() {
 
     const fetchRecipe = async () => {
         const data = await getRecipe(recipeId);
-       setData(data);
+        setData(data);
     }
 
     useEffect(() => {
