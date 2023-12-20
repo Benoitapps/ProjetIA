@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import login from '../../hook/login';
 import '@css/RegisterLogin/RegisterLoginForm.css';
+import { useNavigate } from "react-router-dom";
 
-function FormTheme() {
+function FormTheme({setIsLogged}) {
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -21,7 +23,13 @@ function FormTheme() {
       try{
         console.log("ok");
         console.log(data);
-        const loginn = await login(data);
+        const result = await login(data);
+        console.log(result);
+        if (result.token){
+          localStorage.setItem("token", result.token);
+          setIsLogged(true);
+          navigate("/");
+        }
       }catch(err){
         console.log(err);
       }
