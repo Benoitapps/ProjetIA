@@ -3,7 +3,7 @@ import { postComment } from '../../hook/Comment/postComment.js';
 
 function CommentAdd({addComment}) {
     const [messages, setMessage] = useState('');
-    const   [notes, setNote] = useState(0);
+    const [notes, setNote] = useState(0);
     const [stars, setStars] = useState([
         {
             id: 1,
@@ -61,7 +61,6 @@ function CommentAdd({addComment}) {
                             <li
                                 key={index}
                                 data-note={index}
-                                className="coach-review__stars__item"
                                 onClick={() => {
                                     handleStarClick(star.id)
                                 }}
