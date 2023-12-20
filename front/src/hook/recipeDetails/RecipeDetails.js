@@ -20,4 +20,16 @@ const getRecipe = async (id) => {
     }
 }
 
-export {getRecipe};
+const fetchShoppingList = async (recipeId) => {
+    console.log("recipeId", recipeId);
+    const result = await fetch(`http://localhost:3000/recette/shopping-list/${recipeId}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+    let resultJson = await result.json();
+    return resultJson;
+};
+
+export { getRecipe, fetchShoppingList };

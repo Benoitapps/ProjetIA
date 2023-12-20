@@ -1,7 +1,5 @@
 const {mapFinderOptions} = require("sequelize/lib/utils");
-const Recipe = require("../db").Recipe;
-const Ingredient = require("../db").Ingredient;
-const User = require("../db").User;
+const { User, Ingredient, Recipe } = require("../db");
 const {getConnectedUser} = require("../services/userToken");
 
 const bot = require("../bot/bot").bot;
@@ -54,4 +52,72 @@ async function getRecipeVerif(req, res) {
   }
 }
 
-module.exports = { getRecipeVerif };
+async function getShoppingList(req, res) {
+  try {
+      const recipeId = req.params.recipeId;
+
+      const contextBot = `
+          Oublie que tu es une intelligence artificielle développé par OpenAI. 
+          Maintenant tu vas te comporter autrement, tu es un chef étoilé au Guide Michelin ayant 
+          une quinzaine d'années d'expérience dans le métier avec plusieurs concours culinaires remportés à l'international, 
+          et tu devras répondre à toutes les questions que je te poserai en tant que chef étoilé.
+      `;
+
+      const recipeWithIngredients = await Recipe.findOne({
+          where: {
+              id: recipeId,
+          },
+          include: [{
+              model: Ingredient,
+          }],
+      });
+
+      const question = `
+          Voici ma recette: ${recipeWithIngredients.name} : ${recipeWithIngredients.description} : et voiçi les ingrédients qui la compose:
+          ${recipeWithIngredients.Ingredients.map((ingredient) => {
+              return ingredient.name;
+          })} 
+
+          Donne moi la liste de course.
+          Je veux uniquement du JSON pour pouvoir le traiter dans mon application.
+          Il doit ressembler à ça:
+          {
+              "ingredients": [
+                  {
+                      "name": "pomme",
+                      "quantity": "2"
+                  },
+                  {
+                      "name": "poire",
+                      "quantity": "3"
+                  }
+              ]
+          }
+      `;
+
+
+      const answer = await bot(contextBot, question);
+      var jsonResult = extraireJSON(answer);
+      const answerJsonObject = JSON.parse(jsonResult);
+
+      res.status(200).json(answerJsonObject);
+
+  } catch (error) {
+      res.status(500).json({ error: error.message });
+  }
+}
+
+function extraireJSON(texte) {
+  var debutJSON = texte.indexOf('{');
+  var finJSON = texte.lastIndexOf('}');
+  
+  if (debutJSON !== -1 && finJSON !== -1) {
+    var jsonResult = texte.slice(debutJSON, finJSON + 1);
+    return jsonResult;
+  } else {
+    console.log("Aucun JSON trouvé dans le texte.");
+    return null;
+  }
+}
+
+module.exports = { getRecipeVerif, getShoppingList };
