@@ -3,29 +3,28 @@
 import {addFavoris} from "../../hook/favoris/addFavoris.js";
 import {deleteFavoris} from "../../hook/favoris/deleteFavoris.js";
 import {getStatsFavoris} from "../../hook/favoris/getStatFavoris.js";
-import starTrue from "@img/start_true.png";
-import starFalse from "@img/start_false.png";
+import isFavorite from "@img/is-favorite.svg";
+import isNotFavorite from "@img/is-not-favorite.svg";
 
 import {useEffect, useState} from "react";
 
-function StarFavoris({ name,id, handleClick }) {
-
+function AddFavoris({ name,id, handleClick }) {
     const [favoris, setFavoris] = useState();
     const refresh = useState(false)
-    const [star, setStar] = useState(starFalse)
+    const [putOnFavorite, setPutOnFavorite] = useState(isNotFavorite)
 
 
     const getFavoris = async () => {
         const data = await getStatsFavoris(id);
         setFavoris(data.isFavorite)
-        data.isFavorite ? setStar(starTrue) : setStar(starFalse)
+        data.isFavorite ? setPutOnFavorite(isFavorite) : setPutOnFavorite(isNotFavorite)
     }
 
     useEffect(() => {
         const res = getFavoris()
     }, [refresh,id])
 
-    const clickStar = () => {
+    const clickIcon = () => {
         if (favoris === false) {
             addfavoris()
         } else {
@@ -37,7 +36,7 @@ function StarFavoris({ name,id, handleClick }) {
     const addfavoris = async () => {
         try {
             await addFavoris(id);
-            setStar(starTrue)
+            setPutOnFavorite(isFavorite)
         } catch (error) {
             console.error('Erreur lors de l\'ajout aux favoris :', error);
         }
@@ -46,7 +45,7 @@ function StarFavoris({ name,id, handleClick }) {
     const deletefavoris = async () => {
         try {
             await deleteFavoris(id);
-            setStar(starFalse)
+            setPutOnFavorite(isNotFavorite)
         } catch (error) {
             console.error('Erreur lors de la supr des favoris :', error);
         }
@@ -54,9 +53,9 @@ function StarFavoris({ name,id, handleClick }) {
 
     return (
         <>
-            <img src={star} alt="star" onClick={clickStar} />
+            <img src={putOnFavorite} alt="Ajouter aux favoris" onClick={clickIcon} />
         </>
     )
 }
 
-export default StarFavoris
+export default AddFavoris
