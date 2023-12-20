@@ -203,6 +203,11 @@
     background: var(--primary-hover);
 }
 
+.recipe__details__comments__form__stars {
+    display: flex;
+    gap: 8px;
+}
+
 .recipe__details__comments__allcomments ul {
     display: flex;
     flex-direction: column;
