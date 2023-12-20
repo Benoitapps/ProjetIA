@@ -4,13 +4,14 @@ import CommentAdd from './CommentAdd.jsx'
 import {getComment} from "../../hook/Comment/getComment.js";
 import {postComment} from "../../hook/Comment/postComment.js";
 
-function CommentPage({recipeId}) {
+function CommentPage({recipeId, commentsNote}) {
 
     const [comments, setComment] = useState([]);
 
     const fetchComment = async () => {
         const data = await getComment(recipeId);
         setComment(data.comment);
+        commentsNote(data.comment.map(comment => comment.note));
     }
 
     useEffect(() => {
@@ -26,8 +27,6 @@ function CommentPage({recipeId}) {
             console.error('Erreur lors de l\'ajout aux commentaire:', error);
         }
     }
-
-
 
     return (
         <section className="recipe__details__comments">
