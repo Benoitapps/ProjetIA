@@ -63,7 +63,7 @@ function FormTheme() {
                 />
             </div>
         </div>
-        <input type="submit" value="Se Connecter" className="register-login__form__submit"/>
+        <input type="submit" value="Se connecter" className="register-login__form__submit"/>
       </form>
 
   );

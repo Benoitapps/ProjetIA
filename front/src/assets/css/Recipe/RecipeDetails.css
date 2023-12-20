@@ -208,7 +208,7 @@
     gap: 8px;
 }
 
-.recipe__details__comments__allcomments ul {
+.recipe__details__comments__allcomments > ul {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -236,6 +236,11 @@
 .comment__head__name {
     font-size: 1.25rem; /* 20px */
     font-weight: 600;
+}
+
+.comment__head__note {
+    display: flex;
+    gap: 2px;
 }
 
 .comment__body {
