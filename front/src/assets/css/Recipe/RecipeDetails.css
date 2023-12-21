@@ -20,6 +20,10 @@
     line-height: 0.72;
 }
 
+.recipe__details__head img {
+    cursor: pointer;
+}
+
 .recommendations {
     position: sticky;
     top: 80px;
