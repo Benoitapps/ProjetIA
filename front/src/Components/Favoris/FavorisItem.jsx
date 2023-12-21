@@ -15,6 +15,7 @@ function FavorisItem() {
             const data = await getAllFavoris();
             if(data.recipes.length>0) {
                 setFavoris(data.recipes); // Supposant que 'data' est un objet qui a une propriété 'recipes'
+                console.log(data.recipes);
                 setVide(false);
             }else{
                 setVide(true);
@@ -28,8 +29,8 @@ function FavorisItem() {
         fetchFavoris();
     }, []);
 
-    const StarClick = () => {
-        fetchFavoris();
+    const StarClick = (index) => {
+        setFavoris(favoris.filter((_, i) => i !== index));
     };
 
     return (
@@ -48,7 +49,7 @@ function FavorisItem() {
                                 notes={recipe.notes}
                             />
                         </Link>
-                        <div className="favorites__card__add-favorite" onClick={StarClick}>
+                        <div className="favorites__card__add-favorite" onClick={() => StarClick(index)}>
                             <AddFavoris name={recipe.name} id={recipe.id} iconSize="small"/>
                         </div>
                     </li>
