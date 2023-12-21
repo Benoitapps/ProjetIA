@@ -97,7 +97,7 @@ async function getShoppingList(req, res) {
 
 
       const answer = await bot(contextBot, question);
-      var jsonResult = extraireJSON(answer);
+      let jsonResult = extraireJSON(answer);
       const answerJsonObject = JSON.parse(jsonResult);
 
       res.status(200).json(answerJsonObject);
@@ -108,11 +108,11 @@ async function getShoppingList(req, res) {
 }
 
 function extraireJSON(texte) {
-  var debutJSON = texte.indexOf('{');
-  var finJSON = texte.lastIndexOf('}');
+  let debutJSON = texte.indexOf('{');
+  let finJSON = texte.lastIndexOf('}');
   
   if (debutJSON !== -1 && finJSON !== -1) {
-    var jsonResult = texte.slice(debutJSON, finJSON + 1);
+    let jsonResult = texte.slice(debutJSON, finJSON + 1);
     return jsonResult;
   } else {
     console.log("Aucun JSON trouvé dans le texte.");

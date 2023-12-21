@@ -56,16 +56,30 @@ async function getRecipes(req, res) {
 
 
         const answer = await bot(contextBot, question);
-        const answerJsonObject = JSON.parse(answer);
+        let jsonResult = extraireJSON(answer);
+        const answerJsonObject = JSON.parse(jsonResult);
 
         const recipes = allRecipes.filter((recipe) => {
-            return answerJsonObject.map((recipe) => recipe.id).includes(recipe.id);
+            return answerJsonObject.map((recipe) => recipe.name).includes(recipe.name);
         });
 
         res.status(200).json(recipes);
 
     } catch (error) {
         res.status(500).json({ error: error.message });
+    }
+}
+
+function extraireJSON(texte) {
+    let debutJSON = texte.indexOf('[');
+    let finJSON = texte.lastIndexOf(']');
+    
+    if (debutJSON !== -1 && finJSON !== -1) {
+        let jsonResult = texte.slice(debutJSON, finJSON + 1);
+        return jsonResult;
+    } else {
+        console.log("Aucun JSON trouvé dans le texte.");
+        return null;
     }
 }
 
