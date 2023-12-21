@@ -3,25 +3,36 @@
 import {addFavoris} from "../../hook/favoris/addFavoris.js";
 import {deleteFavoris} from "../../hook/favoris/deleteFavoris.js";
 import {getStatsFavoris} from "../../hook/favoris/getStatFavoris.js";
-import isFavorite from "@img/is-favorite.svg";
-import isNotFavorite from "@img/is-not-favorite.svg";
+import isFavoriteBig from "@img/is-favorite.svg";
+import isNotFavoriteBig from "@img/is-not-favorite.svg";
+import isFavoriteSmall from "@img/is-favorite-small.svg";
+import isNotFavoriteSmall from "@img/is-not-favorite-small.svg";
 
 import {useEffect, useState} from "react";
 
-function AddFavoris({ name,id, handleClick }) {
+function AddFavoris({ name, id, iconSize, handleClick }) {
     const [favoris, setFavoris] = useState();
     const refresh = useState(false)
-    const [putOnFavorite, setPutOnFavorite] = useState(isNotFavorite)
-
+    const [putOnFavorite, setPutOnFavorite] = useState(isNotFavoriteBig);
+    const [iconFavorite, setIconFavorite] = useState(isFavoriteBig);
+    const [iconNotFavorite, setIconNotFavorite] = useState(isNotFavoriteBig);
 
     const getFavoris = async () => {
         const data = await getStatsFavoris(id);
         setFavoris(data.isFavorite)
-        data.isFavorite ? setPutOnFavorite(isFavorite) : setPutOnFavorite(isNotFavorite)
+        data.isFavorite ? setPutOnFavorite(iconFavorite) : setPutOnFavorite(iconNotFavorite)
     }
 
     useEffect(() => {
-        const res = getFavoris()
+        if(iconSize === "small") {
+            setIconFavorite(isFavoriteSmall)
+            setIconNotFavorite(isNotFavoriteSmall)
+        } else {
+            setIconFavorite(isFavoriteBig);
+            setIconNotFavorite(isNotFavoriteBig);
+        }
+
+        const res = getFavoris();
     }, [refresh,id])
 
     const clickIcon = () => {
@@ -30,13 +41,12 @@ function AddFavoris({ name,id, handleClick }) {
         } else {
             deletefavoris()
         }
-
     }
 
     const addfavoris = async () => {
         try {
             await addFavoris(id);
-            setPutOnFavorite(isFavorite)
+            setPutOnFavorite(iconFavorite)
         } catch (error) {
             console.error('Erreur lors de l\'ajout aux favoris :', error);
         }
@@ -45,7 +55,7 @@ function AddFavoris({ name,id, handleClick }) {
     const deletefavoris = async () => {
         try {
             await deleteFavoris(id);
-            setPutOnFavorite(isNotFavorite)
+            setPutOnFavorite(iconNotFavorite)
         } catch (error) {
             console.error('Erreur lors de la supr des favoris :', error);
         }

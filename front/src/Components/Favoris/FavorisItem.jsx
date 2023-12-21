@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import FavorisImage from './FavorisImage.jsx';
 import FavorisRecipe from './FavorisRecipe.jsx';
 import { getAllFavoris } from '../../hook/favoris/getAllMyFavoris.js';
 import '@css/Favoris/favoris.css';
 import AddFavoris from './AddFavoris.jsx';
-import { useNavigate} from 'react-router-dom';
-
 
 function FavorisItem() {
-
-    const navigate = useNavigate();
     const [favoris, setFavoris] = useState([]);
-    const [img , setImg] = useState("");
     const [vide, setVide] = useState(true);
 
     const fetchFavoris = async () => {
@@ -35,36 +31,32 @@ function FavorisItem() {
     const StarClick = () => {
         fetchFavoris();
     };
-    const redirect = (id) => {
-        const route = `/recipe/${id}`;
-
-        navigate(route);
-    }
 
     return (
-        <>
+        <ul className="favorites">
             {!vide?
                 favoris.map((recipe, index) => (
-                <div className="CardRecipe" key={index} >
-                    <div className="textFavoris" onClick={() => redirect(recipe.id)}>
-                    <div className="imageFavoris">
-                        <FavorisImage  img={recipe.src}/>
-                    </div>
-                    <div className="recipeFavrois">
-                        <FavorisRecipe
-                            name={recipe.name}
-                            description={recipe.description}
-                            id={recipe.id}
-                        />
-                    </div>
-                    </div>
-                    <div onClick={StarClick}>
-                        <div style={{ width: '4em' }}> <AddFavoris name={recipe.name} id={recipe.id} /></div>
-                    </div>
-                </div>
-            )) : <div>Vous n'avez pas de favoris</div>}
-        </>
-    );
+                    <li className="favorites__card" key={index}>
+                        <Link to={`/recipe/${recipe.id}`} className="favorites__card__image">
+                            <FavorisImage img={recipe.src}/>
+                        </Link>
+                        <Link to={`/recipe/${recipe.id}`}>
+                            <FavorisRecipe
+                                name={recipe.name}
+                                description={recipe.description}
+                                id={recipe.id}
+                                notes={recipe.notes}
+                            />
+                        </Link>
+                        <div className="favorites__card__add-favorite" onClick={StarClick}>
+                            <AddFavoris name={recipe.name} id={recipe.id} iconSize="small"/>
+                        </div>
+                    </li>
+                )) : <p>Vous n'avez pas de favoris</p>}
+
+        </ul>
+    )
+        ;
 }
 
 export default FavorisItem;
