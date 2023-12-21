@@ -38,7 +38,7 @@ function RecipeDes({recipeId}) {
         <div className="recipe__details">
             <div className="recipe__details__head">
                 <h2>{recipeName}</h2>
-                <AddFavoris name={recipeName} id={ recipeId}/>
+                <AddFavoris name={recipeName} id={ recipeId} iconSize="big"/>
             </div>
             <RecipeNote notes={notes} starSize="big" />
             <div className="recipe__details__image">
