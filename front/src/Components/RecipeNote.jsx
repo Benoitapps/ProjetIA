@@ -39,7 +39,7 @@ function RecipeNote({notes, starSize}) {
     function initStars() {
         const note= notes.reduce((a, b) => a + b, 0) / notes.length;
         const unit = Math.floor(note)
-        const decimal = note - unit;
+        const decimal = note.toFixed(1) - unit;
 
         if(starSize === 'small') {
             setSrcEmpty(starEmptySmall);
@@ -78,7 +78,7 @@ function RecipeNote({notes, starSize}) {
     }, [notes]);
 
     return (
-        <ul className={`recipe-note recipe-note--${starSize}`} title={`Cette recette est notée ${note}/5`}>
+        <ul className={`recipe-note recipe-note--${starSize}`} title={`Cette recette est notée ${note.toFixed(1)}/5`}>
             {
                 stars.map((star, index) => {
                     return (
