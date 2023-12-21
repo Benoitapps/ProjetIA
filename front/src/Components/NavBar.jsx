@@ -3,7 +3,7 @@ import { Outlet, Link } from "react-router-dom";
 import '@css/NavBar.css';
 import Chatbot from './Chatbot.jsx';
 
-function NavBar() {
+function NavBar({isLogged}) {
     return (
         <>
             <header>
@@ -15,15 +15,31 @@ function NavBar() {
                         </Link>
                     </div>
                     <ul>
-                        <li>
-                            <Link to="/favoris">Mon compte</Link>
-                        </li>
-                        <li>
-                            <Link to="/login">Connexion</Link>
-                        </li>
-                        <li className="register">
-                            <Link to="/register">Inscription</Link>
-                        </li>
+                        {
+                            isLogged ? (
+                                <>
+                                    <li>
+                                        <Link to="/favoris">Mon compte</Link>
+                                    </li>
+                                    <li>
+                                        <Link onClick={() => {
+                                            localStorage.removeItem("token");
+                                            window.location.reload();
+                                        }} to="/">Déconnexion</Link>
+                                    </li>
+                                </>
+                            ) : (
+                                <>
+                                    <li>
+                                        <Link to="/login">Connexion</Link>
+                                    </li>
+                                    <li className="register">
+                                        <Link to="/register">Inscription</Link>
+                                    </li>
+                                </>
+                            )
+                        }
+                        
                     </ul>
                 </nav>
             </header>

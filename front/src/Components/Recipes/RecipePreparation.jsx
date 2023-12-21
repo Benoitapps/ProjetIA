@@ -9,7 +9,7 @@ function RecipeRes( {preparation}) {
             <h3>Préparation</h3>
             <ul>
                 {stepsArray.map((etape, index) => (
-                    <li key={index}>{index + ". " + etape}</li>
+                    <li key={index}>{etape}</li>
                 ))}
             </ul>
 

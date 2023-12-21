@@ -8,6 +8,7 @@ import Accompagnement from "./Accompagnement.jsx";
 import RecipeNote from "../RecipeNote.jsx";
 import '@css/Recipe/RecipeDetails.css';
 
+
 function RecipeDes({recipeId}) {
     const [recipeDes, setRecipeDes] = useState("");
     const [recipeIng, setRecipeIng] = useState([]);
@@ -33,7 +34,6 @@ function RecipeDes({recipeId}) {
         fetchRecipe();
     }, [recipeId])
 
-
     return (
         <div className="recipe__details">
             <div className="recipe__details__head">
@@ -45,7 +45,7 @@ function RecipeDes({recipeId}) {
                 <img src={recipeImg} alt="image de la recette" />
             </div>
             <p className="recipe__details__description">{recipeDes}</p>
-            <RecipeIngredients ingredients={recipeIng} />
+            <RecipeIngredients ingredients={recipeIng} recipeId={recipeId} />
             <RecipePreparation preparation={recipePrep} />
             <Accompagnement recipeName={recipeName}/>
 
