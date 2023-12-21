@@ -15,9 +15,7 @@ function RecommendationList({recipeId}) {
 
     useEffect(() => {
         fetchRecipe();
-    }, [])
-
-
+    }, [recipeId])
 
     return (
         <ul className="recommendations__list">
