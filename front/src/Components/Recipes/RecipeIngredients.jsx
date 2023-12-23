@@ -56,12 +56,11 @@ function RecipeIngredients({ ingredients, recipeId }) {
                 value={isLoading ? "Chargement..." : "Générer ma liste de course"}
                 {...(isLoading ? {disabled: true} : {}) }
             />
-            <div className="recipe__details__shopping-list">
-                {
-                    shoppingList == null 
-                    ? '' 
-                    : 
-                    <>
+            {
+                shoppingList == null
+                    ? ''
+                    :
+                    <div className="recipe__details__shopping-list">
                         <h4>Votre liste de course</h4>
                         <ul className="recipe__details__shopping-list__list">
                             {
@@ -91,9 +90,8 @@ function RecipeIngredients({ ingredients, recipeId }) {
                                 </li>
                             </ul>
                         </div>
-                    </>
-                }
-            </div>
+                    </div>
+            }
         </section>
     )
 }
