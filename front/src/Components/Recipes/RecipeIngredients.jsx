@@ -56,26 +56,41 @@ function RecipeIngredients({ ingredients, recipeId }) {
                 value={isLoading ? "Chargement..." : "Générer ma liste de course"}
                 {...(isLoading ? {disabled: true} : {}) }
             />
-            <div>
+            <div className="recipe__details__shopping-list">
                 {
                     shoppingList == null 
                     ? '' 
                     : 
                     <>
-                        {
-                            shoppingList.map((ingredient, index) => {
-                                return (
-                                    <div key={index}>
-                                        <p>{index}. {ingredient.name} : {ingredient.quantity}</p>
-                                    </div>
-                                )
-                            })
-                        }
-                        Partager: 
-                        <img src={twitter} alt="" onClick={shareOnTwitter} style={{cursor: "pointer"}}/>
-                        <img src={whatsapp} alt="" onClick={shareOnWhatsapp} style={{cursor: "pointer"}}/>
-                        <img src={mail} alt="" onClick={shareOnMail} style={{cursor: "pointer"}}/>
-                        <img src={clipboard} alt="" onClick={copyToClipboard} style={{cursor: "pointer"}}/>
+                        <h4>Votre liste de course</h4>
+                        <ul className="recipe__details__shopping-list__list">
+                            {
+                                shoppingList.map((ingredient, index) => {
+                                    return (
+                                        <li key={index}>
+                                            <p><span>{ingredient.name}</span> : {ingredient.quantity}</p>
+                                        </li>
+                                    )
+                                })
+                            }
+                        </ul>
+                        <div className="recipe__details__shopping-list__share">
+                            <p>Partager:</p>
+                            <ul className="recipe__details__shopping-list__share__icons">
+                                <li>
+                                    <img src={twitter} alt="" title="Partager sur Twitter" onClick={shareOnTwitter} style={{cursor: "pointer"}}/>
+                                </li>
+                                <li>
+                                    <img src={whatsapp} alt="" title="Partager sur Whatsapp" onClick={shareOnWhatsapp} style={{cursor: "pointer"}}/>
+                                </li>
+                                <li>
+                                    <img src={mail} alt="" title="Envoyer par mail" onClick={shareOnMail} style={{cursor: "pointer"}}/>
+                                </li>
+                                <li>
+                                    <img src={clipboard} alt="" title="Copier la liste" onClick={copyToClipboard} style={{cursor: "pointer"}}/>
+                                </li>
+                            </ul>
+                        </div>
                     </>
                 }
             </div>
