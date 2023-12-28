@@ -9,7 +9,7 @@
     padding: 0 25px;
     font-size: 16px;
     color: var(--text-black);
-    margin-top: 50px;
+    margin-right: 20px;
 }
 
 .preferences__input::placeholder {
@@ -18,4 +18,22 @@
 
 .preferences__input:focus {
     outline: none;
+}
+
+.preferences__form {
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.preferences__button {
+    display: flex;
+    background: var(--primary);
+    border-radius: var(--radius-prefer);
+    padding: 10px 14px;
+    border: none;
+    cursor: pointer;
+    color: var(--text-white);
 }

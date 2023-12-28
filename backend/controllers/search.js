@@ -1,10 +1,13 @@
 const bot = require("../bot/bot").bot;
-
+const { getUserPreferenceFormatted } = require("../services/getUserPreferenceFormatted");
 const { Recipe, Ingredient } = require("../db");
 
 require("dotenv").config({ path: ".env.local", override: true });
 
 async function getRecipes(req, res) {
+    console.log("------Get recipes token------");
+    console.log(req.cookies.token);
+    console.log("------------");
     try {
         if (!req.body?.recipe) {
             return res.status(400).json({ error: "Missing recipe." });
@@ -23,6 +26,8 @@ async function getRecipes(req, res) {
             }],
         });
 
+        const userPreferenceFormatted = await getUserPreferenceFormatted(req.cookies.token);
+
         const question = `
             Voici les recettes qui sont issues de ma base de données.
             
@@ -34,6 +39,8 @@ async function getRecipes(req, res) {
                     })}
                 `;
             })}
+
+            ${userPreferenceFormatted}
 
             Je veux que tu me donnes uniquement quatre recettes (ou moins s'il y en a pas plus dans la base de données) issues de ma base de données (pas qui sont inventés), qui se rapproche le plus possible de cette demande: ${req.body.recipe}.
             Si ce sont des ingrédients, tu me donneras uniquement les recettes qui contiennent ces ingrédients et rien d'autres. 
