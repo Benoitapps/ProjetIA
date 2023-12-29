@@ -15,14 +15,8 @@ async function getRecipeVerif(req, res) {
   try {
 
     if (!req.params?.recetteId) {
-      console.log(req.params)
       return res.status(400).json({ error: "Missing parameters" });
     }
-      //   const token = req.cookies.token;
-      //   console.log("token", token);
-      //
-      // const test = await getConnectedUser(token);
-      //   console.log(test);
 
     const recette = req.params.recetteId;
 
@@ -35,8 +29,6 @@ async function getRecipeVerif(req, res) {
      });
 
 
-    console.log(ingredients[0].name);
-    console.log("ingredients", ingredients[0].name);
     res.status(200).json({
         name: recipe.name,
         description: recipe.description,
@@ -115,7 +107,7 @@ function extraireJSON(texte) {
     let jsonResult = texte.slice(debutJSON, finJSON + 1);
     return jsonResult;
   } else {
-    console.log("Aucun JSON trouvé dans le texte.");
+    console.error("Aucun JSON trouvé dans le texte.");
     return null;
   }
 }

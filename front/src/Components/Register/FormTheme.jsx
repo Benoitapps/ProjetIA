@@ -28,10 +28,10 @@ function FormTheme() {
                     navigate("/login");
                 }
             } catch (err) {
-                console.log(err);
+                console.error(err);
             }
         } else {
-            console.log("missing argument");
+            console.error("missing argument");
         }
 
     }

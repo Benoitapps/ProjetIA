@@ -9,10 +9,8 @@ async function addFavoris(req, res) {
             return res.status(400).json({ error: "Missing parameters" });
         }
         const token = req.cookies.token;
-        console.log("token", token);
 
         const userId = await getConnectedUser(token);
-        console.log(userId);
 
         const recipeId = req.body.recipeId;
 
@@ -38,10 +36,8 @@ async function deleteFavoris(req, res) {
         return res.status(400).json({ error: "Missing parameters" });
     }
     const token = req.cookies.token;
-    console.log("token", token);
 
     const userId = await getConnectedUser(token);
-    console.log(userId);
 
     const recipeId = req.body.recipeId;
 
@@ -67,13 +63,10 @@ async function getStatFavorite(req, res) {
     if (!req.params?.recipeId) {
         return res.status(400).json({ error: "Missing parameters" });
     }
-    console.log("req.params", req.params)
     const token = req.cookies.token;
-    console.log("token", token);
 
     try {
         const userId = await getConnectedUser(token);
-        console.log(userId);
 
         const recipeId = req.params.recipeId;
 
@@ -84,7 +77,6 @@ async function getStatFavorite(req, res) {
                 like: true
             }
         });
-        console.log("favoris", favoris)
 
         const isFavorite = favoris ? true : false;
 
@@ -100,10 +92,8 @@ async function getFavoris(req, res) {
     try {
 
         const token = req.cookies.token;
-        console.log("token", token);
 
         const userId = await getConnectedUser(token);
-        console.log(userId);
 
 
         const favoris = await Favoris.findAll({
@@ -115,7 +105,6 @@ async function getFavoris(req, res) {
 
         const recipeIds = favoris.map(favori => favori.recipe_id);
 
-        console.log("recipeIds", recipeIds)
 
 
         const tabRecipe = await Recipe.findAll({

@@ -15,7 +15,6 @@ async function getRecomendation(req, res) {
         let myRecipe;
         try {
             myRecipe = await Recipe.findOne({ where: { id: recipeId } });
-            console.log("myrecipe.name", myRecipe.name);
         } catch (error) {
             return res.status(500).json({ error: error.message });
         }
@@ -29,7 +28,6 @@ async function getRecomendation(req, res) {
                     },
                 },
             });
-            console.log("recipes", recipes);
         } catch (error) {
             return res.status(500).json({ error: error.message });
         }
@@ -56,8 +54,7 @@ async function getRecomendation(req, res) {
             [{"id": 11,"recette": "crepe au chocolat"},{"id": 17,"recette": "Pain au chocolat"},{"id": 14,"recette": "gateau a la fraise"},{"id": 16,"recette": "crepe au sucre"}]`;
 
 
-        answer = await getAnswer(tabRecipe, myRecipe, profilBot);
-        console.log("answer2", answer)
+        let answer = await getAnswer(tabRecipe, myRecipe, profilBot);
 
         const debutIndice = answer.indexOf('[');
         const finIndice = answer.lastIndexOf(']');
@@ -65,23 +62,18 @@ async function getRecomendation(req, res) {
 // Extraire la sous-chaîne entre "[" et "]"
         const answer2 = answer.substring(debutIndice, finIndice + 1);
 
-        console.log("donneesJson", typeof answer2)
 
          const answerJson = JSON.parse(answer2);
-        console.log("donneesJson2", typeof answerJson)
-        console.log("donneesJson2", answerJson)
 
 
          const recipeIds = answerJson.map(recipe => recipe.id);
 
-        console.log("recipeIds", recipeIds)
 
         const recipe = await Recipe.findAll({
             where: {
                 id: recipeIds
             }
         });
-        console.log("recipe", recipe)
 
 
         res.status(200).json({
@@ -95,16 +87,12 @@ async function getRecomendation(req, res) {
 module.exports = { getRecomendation };
 
 async function getAnswer(tabRecipe, myRecipe,profilBot) {
-    console.log("tabRecipe", tabRecipe);
-    console.log("myRecipe", myRecipe.name);
-    console.log("profilBot", profilBot);
     try {
         if (!tabRecipe || !myRecipe || !profilBot) {
             return "missing parameters answer"
         }
         const question = myRecipe.name;
         const answer = await bot(profilBot, question);
-        console.log("answer", answer)
         return answer;
     } catch (error) {
         return error.message;

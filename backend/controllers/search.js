@@ -5,9 +5,6 @@ const { Recipe, Ingredient } = require("../db");
 require("dotenv").config({ path: ".env.local", override: true });
 
 async function getRecipes(req, res) {
-    console.log("------Get recipes token------");
-    console.log(req.cookies.token);
-    console.log("------------");
     try {
         if (!req.body?.recipe) {
             return res.status(400).json({ error: "Missing recipe." });
@@ -85,7 +82,7 @@ function extraireJSON(texte) {
         let jsonResult = texte.slice(debutJSON, finJSON + 1);
         return jsonResult;
     } else {
-        console.log("Aucun JSON trouvé dans le texte.");
+        console.error("Aucun JSON trouvé dans le texte.");
         return null;
     }
 }

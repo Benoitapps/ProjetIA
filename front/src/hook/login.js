@@ -1,5 +1,4 @@
 const register = async (data) => {
-    console.log(data);
     try {
         const result = await fetch("http://localhost:3000/login", {
             method: "POST",
@@ -10,7 +9,7 @@ const register = async (data) => {
             body: JSON.stringify({
                 email: data.email,
                 password: data.password,
-              })
+            })
         });
 
         if (result.ok) {

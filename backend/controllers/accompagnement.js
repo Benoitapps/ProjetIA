@@ -11,7 +11,6 @@ async function getAnswer(req, res) {
         }
         const question = req.body.question;
         const answer = await bot(profilBot, question);
-        console.log("ansxer",answer)
         res.status(200).json({ answer: answer });
     } catch (error) {
         res.status(500).json({ error: error.message });

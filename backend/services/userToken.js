@@ -18,7 +18,6 @@ function getConnectedUser(token) {
                     if (!user) {
                         reject({ error: "User not found" });
                     }
-                    console.log("user.id", user.id);
                     resolve(user.id);
                 })
                 .catch((error) => {

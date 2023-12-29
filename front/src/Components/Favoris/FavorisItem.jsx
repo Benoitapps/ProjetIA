@@ -15,7 +15,6 @@ function FavorisItem() {
             const data = await getAllFavoris();
             if(data.recipes.length>0) {
                 setFavoris(data.recipes); // Supposant que 'data' est un objet qui a une propriété 'recipes'
-                console.log(data.recipes);
                 setVide(false);
             }else{
                 setVide(true);
