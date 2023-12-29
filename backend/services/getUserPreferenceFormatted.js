@@ -3,7 +3,6 @@ const { getConnectedUser } = require("../services/userToken");
 
 const getUserPreferenceFormatted = async (token) => {
     const userId = await getConnectedUser(token);
-    console.log(userId)
     
     if (userId) {
         const foodPreference = await FoodPreference.findAll({
@@ -11,10 +10,12 @@ const getUserPreferenceFormatted = async (token) => {
                 user_id: userId,
             },
         });
-        const foodPreferenceFormatted = foodPreference.map((food) => food.name);
-        console.log(foodPreferenceFormatted)
-        return "Voici mes préférences alimentaires : " + foodPreferenceFormatted.join(", ") 
-                + ". Je ne souhaite donc pas avoir des recettes qui contiennent ces aliments.";
+        const arrayOffoodPreference = foodPreference.map((food) => food.name);
+
+        let foodPreferenceFormatted = arrayOffoodPreference.join(", ");
+
+        return `Mes préférences alimentaires incluent : ${foodPreferenceFormatted}. 
+                C'est pourquoi si des recettes comportent un des ingrédients tu devras éviter de le prendre, car j'ai des allergies alimentaires.`;
     }
 
     return "";

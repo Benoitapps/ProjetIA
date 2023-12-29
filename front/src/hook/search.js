@@ -4,6 +4,7 @@ const search = async (recipe) => {
         headers: {
             "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify({ recipe: recipe }),
     });
 

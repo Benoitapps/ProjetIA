@@ -40,11 +40,11 @@ async function getRecipes(req, res) {
                 `;
             })}
 
-            ${userPreferenceFormatted}
-
             Je veux que tu me donnes uniquement quatre recettes (ou moins s'il y en a pas plus dans la base de données) issues de ma base de données (pas qui sont inventés), qui se rapproche le plus possible de cette demande: ${req.body.recipe}.
             Si ce sont des ingrédients, tu me donneras uniquement les recettes qui contiennent ces ingrédients et rien d'autres. 
             Si ce sont des recettes, tu me donneras uniquement les recettes qui ont ce nom et rien d'autres.
+
+            ${userPreferenceFormatted}
 
             Tu me retourneras uniquement les noms des recettes sous cette forme et pas autrement: [{},{}]
             [
