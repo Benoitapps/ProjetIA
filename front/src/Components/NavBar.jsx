@@ -25,6 +25,7 @@ function NavBar({isLogged}) {
                                         <Link onClick={() => {
                                             localStorage.removeItem("token");
                                             window.location.reload();
+                                            document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
                                         }} to="/">Déconnexion</Link>
                                     </li>
                                 </>
