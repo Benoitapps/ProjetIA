@@ -5,9 +5,6 @@ const { Recipe, Ingredient } = require("../db");
 require("dotenv").config({ path: ".env.local", override: true });
 
 async function getRecipes(req, res) {
-    console.log("------Get recipes token------");
-    console.log(req.cookies.token);
-    console.log("------------");
     try {
         if (!req.body?.recipe) {
             return res.status(400).json({ error: "Missing recipe." });
@@ -40,11 +37,11 @@ async function getRecipes(req, res) {
                 `;
             })}
 
-            ${userPreferenceFormatted}
-
             Je veux que tu me donnes uniquement quatre recettes (ou moins s'il y en a pas plus dans la base de données) issues de ma base de données (pas qui sont inventés), qui se rapproche le plus possible de cette demande: ${req.body.recipe}.
             Si ce sont des ingrédients, tu me donneras uniquement les recettes qui contiennent ces ingrédients et rien d'autres. 
             Si ce sont des recettes, tu me donneras uniquement les recettes qui ont ce nom et rien d'autres.
+
+            ${userPreferenceFormatted}
 
             Tu me retourneras uniquement les noms des recettes sous cette forme et pas autrement: [{},{}]
             [
@@ -85,7 +82,7 @@ function extraireJSON(texte) {
         let jsonResult = texte.slice(debutJSON, finJSON + 1);
         return jsonResult;
     } else {
-        console.log("Aucun JSON trouvé dans le texte.");
+        console.error("Aucun JSON trouvé dans le texte.");
         return null;
     }
 }

@@ -9,10 +9,8 @@ async function addFoodPreference(req, res) {
             return res.status(400).json({ error: "Missing parameters" });
         }
         const token = req.cookies.token;
-        console.log("token", token);
 
         const userId = await getConnectedUser(token);
-        console.log(userId);
 
         const nameFood = req.body.nameFood;
         const foodPreference = await FoodPreference.create({
@@ -35,10 +33,8 @@ async function deleteFoodPreference(req, res) {
         return res.status(400).json({ error: "Missing parameters" });
     }
     const token = req.cookies.token;
-    console.log("token", token);
 
     const userId = await getConnectedUser(token);
-    console.log(userId);
 
     const foodId = req.body.foodId;
 
@@ -63,10 +59,8 @@ async function deleteFoodPreference(req, res) {
 async function getFoodPreference(req, res) {
     try {
         const token = req.cookies.token;
-        console.log("token", token);
 
         const userId = await getConnectedUser(token);
-        console.log(userId);
 
         const foodPreference = await FoodPreference.findAll({
             where: {

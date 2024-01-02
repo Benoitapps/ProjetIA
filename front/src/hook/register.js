@@ -1,5 +1,4 @@
 const register = async (data) => {
-    console.log(data);
     try {
         const result = await fetch("http://localhost:3000/signup", {
             method: "POST",

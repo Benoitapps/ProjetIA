@@ -21,7 +21,6 @@ const getRecipe = async (id) => {
 }
 
 const fetchShoppingList = async (recipeId) => {
-    console.log("recipeId", recipeId);
     const result = await fetch(`http://localhost:3000/recette/shopping-list/${recipeId}`, {
         method: "GET",
         headers: {

@@ -21,20 +21,17 @@ function FormTheme({setIsLogged}) {
 
     if ( email != "" && password != "" ){
       try{
-        console.log("ok");
-        console.log(data);
         const result = await login(data);
-        console.log(result);
         if (result.token){
           localStorage.setItem("token", result.token);
           setIsLogged(true);
           navigate("/");
         }
       }catch(err){
-        console.log(err);
+        console.error(err);
       }
   }else{
-    console.log("missing argument");
+    console.error("missing argument");
   }
 
   }

@@ -9,10 +9,8 @@ async function addComment(req, res) {
             return res.status(400).json({ error: "Missing parameters" });
         }
         const token = req.cookies.token;
-        // console.log("token", token);
 
         const userId = await getConnectedUser(token);
-        // console.log(userId);
 
         const recipeId = req.body.recipeId;
         const message = req.body.message;
@@ -75,19 +73,15 @@ async function getComment(req, res) {
           }
         });
 
-        // console.log("comment11", comment)
 
 
         const recupName = async () => {
             let tab = [];
 
-            // console.log("comment.length", comment.length);
 
             for (const item of comment) {
-                // console.log("itemsfor", item);
 
                 const user = await User.findOne({ id: item.user_id });
-                // console.log("user", user);
 
                 const com = {};
 
@@ -95,9 +89,7 @@ async function getComment(req, res) {
                 com.commentaire = item.message;
                 com.note = item.note;
 
-                // console.log("comPush", com);
                 tab.push(com);
-                // console.log("latab", tab);
             }
 
             return tab;
