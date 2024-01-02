@@ -37,7 +37,7 @@ async function getRecomendation(req, res) {
 
             for (const recipe of recipes) {
                 const ingredients = await recipe.getIngredients();
-                console.log("ingredients",ingredients)
+                // console.log("ingredients",ingredients)
 
                 const recipeWithIngredients = {
                     id: recipe.id,
@@ -51,7 +51,7 @@ async function getRecomendation(req, res) {
                 // console.log("recipeWithIngredients",recipeWithIngredients)
                 recipesWithIngredients.push(recipeWithIngredients);
             }
-            console.log("recipesWithIngredients");
+            // console.log("recipesWithIngredients");
             return recipesWithIngredients;
         }
 
@@ -61,20 +61,20 @@ async function getRecomendation(req, res) {
 
         // console.log("allrecipe", allrecipe)
         const tabRecipe = recipeWithIngredients.map((item) => `${item.id}:${item.name}: ${item.src} :${item.ingredients.map(ing => ing.name).join(', ')}`).join(', ');
-         console.log("tabRecipe", tabRecipe)
+         // console.log("tabRecipe", tabRecipe)
 
         let profilBot;
 
         if(req.cookies.token){
-            console.log("IL Y A UN TOKEN")
+            // console.log("IL Y A UN TOKEN")
             let token = req.cookies.token;
             const userId = await getConnectedUser(token);
-            console.log("userId", userId)
+            // console.log("userId", userId)
 
             const preferences = await FoodPreference.findAll({where: {user_id: userId}});
             const allPreferences = preferences.map(preference => preference.name);
             const allPreferencesString = allPreferences.join(', ');
-            console.log("allPreferencesString", allPreferencesString)
+            // console.log("allPreferencesString", allPreferencesString)
 
             profilBot = `profilBotn Voici les recettes ainsi que leurs id qui sont issues de ma base de données.
             Les données sont écrite de cette facon identifiant:nom_de_la_recette.
@@ -106,7 +106,7 @@ async function getRecomendation(req, res) {
 
         }
 
-        console.log("profilBot", profilBot)
+        // console.log("profilBot", profilBot)
         //reponse de l'IA
         answer = await getAnswer(tabRecipe, myRecipe, profilBot);
 
