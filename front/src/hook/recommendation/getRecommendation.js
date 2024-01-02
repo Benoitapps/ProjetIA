@@ -5,8 +5,9 @@ const getRecommendation = async (id) => {
             headers: {
                 "Content-Type": "application/json",
             },
-        });
+            credentials : 'include',
 
+        });
 
         if (result.ok) {
             const data = await result.json();

@@ -26,7 +26,7 @@ function RecommendationList({recipeId}) {
             {isLoading 
                 ? <p>Chargement...</p> 
                 : recipes.map((recipe, index) => (
-                    <RecommendationItem name={recipe.name} id={recipe.id} src={recipe.src} description={recipe.description} key={index} />
+                    <RecommendationItem name={recipe.recette} id={recipe.id} src={recipe.src} description={recipe.description} key={index} />
                 ))
             }
         </ul>

@@ -6,20 +6,23 @@ const FoodPreference = require("../db").FoodPreference;
 const bot = require("../bot/bot").bot;
 
 async function getRecomendation(req, res) {
+
     try {
         if (!req.params?.recipeId) {
             return res.status(400).json({ error: "Paramètres manquants" });
         }
         const recipeId = req.params.recipeId;
 
+        //la recette selectionner
         let myRecipe;
         try {
             myRecipe = await Recipe.findOne({ where: { id: recipeId } });
-            console.log("myrecipe.name", myRecipe.name);
+            // console.log("myrecipe.name", myRecipe.name);
         } catch (error) {
             return res.status(500).json({ error: error.message });
         }
 
+        //toutes les recettes sauf celle selectionner
         let recipes;
         try {
             recipes = await Recipe.findAll({
@@ -29,20 +32,23 @@ async function getRecomendation(req, res) {
                     },
                 },
             });
-            console.log("recipes", recipes);
         } catch (error) {
             return res.status(500).json({ error: error.message });
         }
 
+        //toutes les recettes chosis par IA
         const allrecipe = recipes.map((recipe) => {
             return {
                 id: recipe.id,
                 name: recipe.name,
+                description: recipe.description,
+                src: recipe.src,
             };
         });
-        const tabRecipe = allrecipe.map((item) => `${item.id}:${item.name}`).join(', ');
+        const tabRecipe = allrecipe.map((item) => `${item.id}:${item.name}:${item.src}:${item.description}`).join(', ');
 
 
+        //Profil de l'IA
         const profilBot = `profilBotn Voici les recettes ainsi que leurs id qui sont issues de ma base de données.
             Les données sont écrite de cette facon identifiant:nom_de_la_recette.
 
@@ -53,39 +59,33 @@ async function getRecomendation(req, res) {
         Si il y a moins de quatre recettes similaire tiré de ma base de données, tu m'ajouteras le nombre nécessaire de recette pour en avoir quatre au total. 
 
         retournes UNIQUEMENT et seulement un objet JSON et pas d'autres textes, le JSON aura cette forme :
-            [{"id": 11,"recette": "crepe au chocolat"},{"id": 17,"recette": "Pain au chocolat"},{"id": 14,"recette": "gateau a la fraise"},{"id": 16,"recette": "crepe au sucre"}]`;
+            [{"id": 11,"recette": "crepe au chocolat","src":"liens"},{"id": 17,"recette": "Pain au chocolat","src":"liens"},{"id": 14,"recette": "gateau a la fraise","src":"liens"},{"id": 16,"recette": "crepe au sucre","src":"liens"}]`;
 
-
+        //reponse de l'IA
         answer = await getAnswer(tabRecipe, myRecipe, profilBot);
-        console.log("answer2", answer)
 
+        //trransformation de la reponse de l'IA en JSON
         const debutIndice = answer.indexOf('[');
         const finIndice = answer.lastIndexOf(']');
-
-// Extraire la sous-chaîne entre "[" et "]"
         const answer2 = answer.substring(debutIndice, finIndice + 1);
-
-        console.log("donneesJson", typeof answer2)
-
-         const answerJson = JSON.parse(answer2);
-        console.log("donneesJson2", typeof answerJson)
-        console.log("donneesJson2", answerJson)
-
+        const answerJson = JSON.parse(answer2);
 
          const recipeIds = answerJson.map(recipe => recipe.id);
-
-        console.log("recipeIds", recipeIds)
 
         const recipe = await Recipe.findAll({
             where: {
                 id: recipeIds
             }
         });
-        console.log("recipe", recipe)
+
+         //les differentes recettes
+        console.log("recipeIds", recipeIds);
+        console.log("answerJson", answerJson);
+        // console.log("recipe", recipe)
 
 
         res.status(200).json({
-            answer: recipe,
+            answer: answerJson,
         });
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -95,16 +95,13 @@ async function getRecomendation(req, res) {
 module.exports = { getRecomendation };
 
 async function getAnswer(tabRecipe, myRecipe,profilBot) {
-    console.log("tabRecipe", tabRecipe);
-    console.log("myRecipe", myRecipe.name);
-    console.log("profilBot", profilBot);
+
     try {
         if (!tabRecipe || !myRecipe || !profilBot) {
             return "missing parameters answer"
         }
         const question = myRecipe.name;
         const answer = await bot(profilBot, question);
-        console.log("answer", answer)
         return answer;
     } catch (error) {
         return error.message;

@@ -9,7 +9,7 @@ import RecipeNote from "../RecipeNote.jsx";
 import '@css/Recipe/RecipeDetails.css';
 
 
-function RecipeDes({recipeId}) {
+function RecipeDes({recipeId, isLogged}) {
     const [recipeDes, setRecipeDes] = useState("");
     const [recipeIng, setRecipeIng] = useState([]);
     const [recipeName, setRecipeName] = useState(null);
@@ -38,7 +38,7 @@ function RecipeDes({recipeId}) {
         <div className="recipe__details">
             <div className="recipe__details__head">
                 <h2>{recipeName}</h2>
-                <AddFavoris name={recipeName} id={ recipeId} iconSize="big"/>
+                {isLogged? <AddFavoris name={recipeName} id={ recipeId} iconSize="big"/>:null}
             </div>
             <RecipeNote notes={notes} starSize="big" />
             <div className="recipe__details__image">

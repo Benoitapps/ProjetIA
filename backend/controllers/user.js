@@ -120,6 +120,7 @@ async function getUser(req, res) {
 
 function getConnectedUser(req, res) {
   const token = req.cookies.token;
+  console.log("token", token)
 
   if (!token) {
     return res.status(401).json({ error: "Token not found" });

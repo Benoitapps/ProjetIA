@@ -26,7 +26,7 @@ function App() {
         <Routes>
           <Route path="/" element={<NavBar isLogged={isLogged}/>}>
             <Route index element={<Home />} />
-            <Route path="recipe/:recipeId" element={<RecipePageDetails/>} />
+            <Route path="recipe/:recipeId" element={<RecipePageDetails isLogged={isLogged}/>} />
             <Route path="register" element={<RegisterPage />} />
             <Route path="login" element={<LoginPage setIsLogged={setIsLogged}/>} />
             <Route path="favoris" element={<FavorisPage />} />

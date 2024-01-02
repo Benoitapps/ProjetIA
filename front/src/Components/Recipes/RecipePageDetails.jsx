@@ -6,7 +6,7 @@ import {useParams } from "react-router-dom";
 import {getRecipe} from "../../hook/recipeDetails/RecipeDetails.js";
 import {useEffect, useState} from "react";
 
-function RecipePageDetails() {
+function RecipePageDetails({isLogged}) {
     const { recipeId } = useParams();
     const [data, setData] = useState([]);
 
@@ -22,7 +22,7 @@ function RecipePageDetails() {
 
     return (
         <div className="recipe">
-            <RecipeDes recipeId={recipeId}  data={data}/>
+            <RecipeDes recipeId={recipeId}  data={data} isLogged={isLogged}/>
             <RecommendationPage recipeId={recipeId}/>
         </div>
     )
