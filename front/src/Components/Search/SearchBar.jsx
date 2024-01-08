@@ -41,13 +41,13 @@ function SearchBar({ setRecipes, setIsLoading, isLoading }) {
         listening,
     } = useSpeechRecognition();
 
-    if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
-        console.log('Your browser does not support speech recognition software! Try Chrome desktop, maybe?');
-    }
-
     const handleListen = async () => {
+        if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
+            setError("Votre navigateur ne supporte pas la reconnaissance vocale.");
+        }
+
         if (!listening) {
-            SpeechRecognition.startListening({ language: 'fr-FR'});
+            SpeechRecognition.startListening({ language: 'fr-FR', continous: true});
             setIsListening(true);
             setSearchValue("");
             resetTranscript();
