@@ -51,16 +51,10 @@
     text-align: center;
 }
 
-.micro,
-.micro--listening {
+.micro {
     cursor: pointer;
 }
 
-.micro:focus,
-.micro--listening:focus {
+.micro:focus {
     outline: none;
-}
-
-.micro--listening svg path {
-    fill: var(--primary) !important;
 }
