@@ -1,5 +1,5 @@
 const {mapFinderOptions} = require("sequelize/lib/utils");
-const { User, Ingredient, Recipe } = require("../db");
+const { User, Ingredient, Recipe, Comment } = require("../db");
 const {getConnectedUser} = require("../services/userToken");
 
 const bot = require("../bot/bot").bot;
@@ -28,15 +28,33 @@ async function getRecipeVerif(req, res) {
         tabIngredients.push(element.name);
      });
 
+     const recipeWithIngredients = await Recipe.findOne({
+      where: {
+          id: recette,
+      },
+      include: [{
+          model: Ingredient,Comment
+      }],
+      });
 
-    res.status(200).json({
-        name: recipe.name,
-        description: recipe.description,
-        ingredients: tabIngredients,
+      res.status(200).json({
+        name: recipeWithIngredients.name,
+        description: recipeWithIngredients.description,
+        ingredients: recipeWithIngredients.Ingredients.map((ingredient) => {
+            return ingredient.name;}),
         preparation: recipe.preparation,
-        image: recipe.src
+        image: recipe.src,
 
     })
+
+    // res.status(200).json({
+    //     name: recipe.name,
+    //     description: recipe.description,
+    //     ingredients: tabIngredients,
+    //     preparation: recipe.preparation,
+    //     image: recipe.src
+
+    // })
 
   } catch (error) {
     console.error("Error:", error);
