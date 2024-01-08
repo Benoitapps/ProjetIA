@@ -82,6 +82,7 @@ function SearchBar({ setRecipes, setIsLoading, isLoading }) {
                   type="button"
                   onClick={handleListen}
                   className="micro"
+                  title="Recherche vocale"
                 >
                     {
                         isListening ?
