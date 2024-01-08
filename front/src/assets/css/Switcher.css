@@ -1,10 +1,14 @@
+.switcher-component {
+    padding-top: 25px;
+    width: 100%;
+}
+
 .switcher {
     display: flex;
     background: var(--background);
     border-radius: 25px;
     width: fit-content;
     margin: 0 auto;
-    padding-top: 25px;
     box-shadow: var(--shadow);
     font-size: 1rem; /* 16px */
 }
