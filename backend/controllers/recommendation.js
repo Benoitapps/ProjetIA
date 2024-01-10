@@ -50,7 +50,7 @@ async function getRecomendation(req, res) {
         const recipesWithIngredients = await getInge(recipeId);
         // console.log("recipesWithIngredients", recipesWithIngredients);
 
-        const tabRecipe = recipesWithIngredients.map((item) => `id:${item.id} nom:${item.name} Ingredients:${item.Ingredients.map(ing => ing.name).join(', ')}`).join(', ');
+        const tabRecipe = recipesWithIngredients.map((item) => `id:${item.id} nom:${item.name} lien:${item.src} Ingredients:${item.Ingredients.map(ing => ing.name).join(', ')}`).join(', ');
         // console.log("tabRecipe", tabRecipe);
         
         const userPreferenceFormatted = await getUserPreferenceFormatted(req.cookies.token);
