@@ -1,6 +1,8 @@
+const env = import.meta.env
+
 const getRecommendation = async (id) => {
     try {
-        const result = await fetch(`http://localhost:3000/recommendation/${id}`, {
+        const result = await fetch(`http://${env.VITE_URL}:3000/recommendation/${id}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

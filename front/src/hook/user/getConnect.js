@@ -1,6 +1,8 @@
+const env = import.meta.env
+
 const getUser = async () => {
     try {
-        const result = await fetch("http://localhost:3000/connect", {
+        const result = await fetch(`http://${env.VITE_URL}:3000/connect`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

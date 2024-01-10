@@ -1,6 +1,7 @@
+const env = import.meta.env
 const getStatsFavoris = async (id) => {
     try {
-        const result = await fetch(`http://localhost:3000/favoris/stats/${id}`, {
+        const result = await fetch(`http://${env.VITE_URL}:3000/favoris/stats/${id}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

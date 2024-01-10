@@ -1,6 +1,7 @@
+const env = import.meta.env
 const postComment = async (id,message,note) => {
     try {
-        const result = await fetch("http://localhost:3000/comment", {
+        const result = await fetch(`http://${env.VITE_URL}:3000/comment`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
