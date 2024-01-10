@@ -1,6 +1,7 @@
+const env = import.meta.env
 const getRecipe = async (id) => {
     try {
-        const result = await fetch(`http://localhost:3000/recette/${id}`, {
+        const result = await fetch(`http://${env.VITE_URL}:3000/recette/${id}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -21,7 +22,7 @@ const getRecipe = async (id) => {
 }
 
 const fetchShoppingList = async (recipeId) => {
-    const result = await fetch(`http://localhost:3000/recette/shopping-list/${recipeId}`, {
+    const result = await fetch(`http://${env.VITE_URL}:3000/recette/shopping-list/${recipeId}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",

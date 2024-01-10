@@ -1,5 +1,8 @@
+const env = import.meta.env
+
+
 const chatbot = async (question) => {
-    const result = await fetch("http://localhost:3000/chat", {
+    const result = await fetch(`http://${env.VITE_URL}:3000/chat`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

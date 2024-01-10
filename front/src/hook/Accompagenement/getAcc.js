@@ -1,5 +1,6 @@
+const env = import.meta.env
 const getAccompagnement = async (question) => {
-    const result = await fetch("http://localhost:3000/accompagnement", {
+    const result = await fetch(`http://${env.VITE_URL}:3000/accompagnement`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
