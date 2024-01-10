@@ -4,7 +4,7 @@ const { logger } = require("sequelize/lib/utils/logger");
 
 function getConnectedUser(token) {
     if (!token) {
-        return Promise.reject({ error: "Token not found" });
+        return null;
     }
 
     return new Promise((resolve, reject) => {
