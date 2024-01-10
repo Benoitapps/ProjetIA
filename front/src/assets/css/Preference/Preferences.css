@@ -1,0 +1,31 @@
+.preferences {
+    max-width: 790px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.preferences__list {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 35px;
+    gap: 14px;
+}
+
+.preferences__list__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--primary);
+    border-radius: var(--radius-prefer);
+    padding: 10px 14px;
+}
+
+.preferences__list__item svg {
+    cursor: pointer;
+}
+
+.preferences__list__item p {
+    color: var(--text-white);
+    font-size: 1rem; /* 16px */
+}

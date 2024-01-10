@@ -1,0 +1,39 @@
+.preferences__input {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    background-color: var(--text-white);
+    border: none;
+    box-shadow: var(--shadow);
+    border-radius: 50px;
+    padding: 0 25px;
+    font-size: 16px;
+    color: var(--text-black);
+    margin-right: 20px;
+}
+
+.preferences__input::placeholder {
+    color: var(--text-grey);
+}
+
+.preferences__input:focus {
+    outline: none;
+}
+
+.preferences__form {
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.preferences__button {
+    display: flex;
+    background: var(--primary);
+    border-radius: var(--radius-prefer);
+    padding: 10px 14px;
+    border: none;
+    cursor: pointer;
+    color: var(--text-white);
+}
