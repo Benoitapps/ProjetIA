@@ -106,7 +106,7 @@
 .recipe__details__image {
     margin-top: 40px;
     width: 100%;
-    max-width: 700px;
+    max-width: 600px;
     aspect-ratio: 1/1;
     border-radius: var(--radius-card);
     overflow: hidden;
@@ -258,7 +258,8 @@
     color: var(--text-grey);
 }
 
-.recipe__details__shopping-list {
+.recipe__details__shopping-list,
+.accompagnements {
     margin-top: 15px;
     width: 100%;
     background-color: var(--text-white);
@@ -304,4 +305,8 @@
 
 .recipe__details__shopping-list__share__icons img {
     filter: invert(56%) sepia(28%) saturate(2544%) hue-rotate(322deg) brightness(105%) contrast(114%);
+}
+
+.accompagnements {
+    font-size: 1.25rem; /* 20px */
 }
