@@ -47,6 +47,20 @@ export default function Chatbot() {
             setInputIsBlocked(true);
             input.value = '';
 
+            setTimeout(() => {
+                setMessages([
+                    ...messages,
+                    {
+                        role: 'user',
+                        text: message
+                    },
+                    {
+                        role: 'bot',
+                        text: 'Je cherche la réponse à votre question, veuillez patienter...'
+                    }
+                ]);
+            }, 1000);
+
             await sendMessageToChatbot(message).then((response) => {
                 setInputIsBlocked(false);
 
