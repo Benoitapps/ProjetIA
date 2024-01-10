@@ -5,10 +5,9 @@ import { useNavigate } from "react-router-dom";
 
 function FormTheme({setIsLogged}) {
   const navigate = useNavigate();
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  
+  const [error, setError] = useState('');
 
   const handleSubmit =  async (event) => {
     event.preventDefault();
@@ -18,27 +17,33 @@ function FormTheme({setIsLogged}) {
       password,
     };
 
-
     if ( email != "" && password != "" ){
       try{
         const result = await login(data);
+
+        if(error){
+          setError("");
+        }
+
         if (result.token){
           localStorage.setItem("token", result.token);
           setIsLogged(true);
           navigate("/");
+        } else {
+          setError(result.error);
         }
       }catch(err){
         console.error(err);
       }
-  }else{
-    console.error("missing argument");
-  }
-
+    } else{
+      setError("Veuillez remplir tous les champs");
+    }
   }
 
   return (
       <form onSubmit={handleSubmit} className="register-login__form">
         <div className="register-login__form__container">
+            {error && <p className="error">{error}</p>}
             <div className="register-login__form__container__field">
                 <label
                     htmlFor="email"

@@ -5,11 +5,10 @@ import { useNavigate } from "react-router-dom";
 
 function FormTheme() {
     const navigate = useNavigate();
-
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
+    const [error, setError] = useState('');
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -24,8 +23,15 @@ function FormTheme() {
         if (name != "" && email != "" && password != "") {
             try {
                 const sign = await register(data);
-                if (sign) {
+
+                if(error){
+                    setError("");
+                }
+
+                if (!sign.error) {
                     navigate("/login");
+                } else {
+                    setError(sign.error);
                 }
             } catch (err) {
                 console.error(err);
@@ -39,6 +45,7 @@ function FormTheme() {
     return (
         <form onSubmit={handleSubmit} className="register-login__form">
             <div className="register-login__form__container">
+                {error && <p className="error">{error}</p>}
                 <div className="register-login__form__container__field">
                     <label
                         htmlFor="name"

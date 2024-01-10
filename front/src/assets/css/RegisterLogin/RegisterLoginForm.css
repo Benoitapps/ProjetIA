@@ -4,10 +4,20 @@
 }
 
 .register-login__form__container {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 20px;
     margin-bottom: 25px;
+}
+
+.register-login__form__container > .error {
+    color: var(--text-white);
+    background-color: var(--red);
+    width: 100%;
+    border-radius: var(--radius-prefer);
+    padding: 10px 25px;
+    text-align: center;
 }
 
 .register-login__form__container__field__input {
