@@ -55,7 +55,7 @@ async function signup(req, res) {
 async function login(req, res) {
   try {
     if (!req.body?.email || !req.body?.password) {
-      return res.status(400).json({ error: "Missing parameters" });
+      return res.status(400).json({ error: "Email ou mot de pass manquant" });
     }
     const user = await User.findOne({
       where: { email: req.body.email },
@@ -64,7 +64,7 @@ async function login(req, res) {
     if (!user) {
       return res
         .status(401)
-        .json({ error: "Utilisateur ou Mot de passe incorrect!" });
+        .json({ error: "Email ou Mot de passe incorrect !" });
     }
 
     if (user.is_verified === false) {
@@ -81,7 +81,7 @@ async function login(req, res) {
     if (!validPassword) {
       return res
         .status(401)
-        .json({ error: "Utilisateur ou Mot de passe incorrect!" });
+        .json({ error: "Email ou Mot de passe incorrect !" });
     }
 
     const token = jwt.sign(
