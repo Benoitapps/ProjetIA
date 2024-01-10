@@ -59,7 +59,7 @@ async function getRecomendation(req, res) {
         profilBot = `Voici les recettes ainsi que leurs id qui sont issues de ma base de données.
         Les données sont écrite de cette facon identifiant:nom_de_la_recette.
         voici les recettes de ma base de données:  ${tabRecipe}
-        J'aimerais que pour cette recette: ${myRecipe.name}, tu me donnes uniquement quatre recettes qui se rapproche le plus possible en fonction des ingrédients qui la compose.
+        J'aimerais que pour cette recette: ${myRecipe.name}, tu me donnes uniquement quatre recettes qui se rapproche le plus possible en fonction des ingrédients qui la compose et qui sont forcement parmis les rectte données.
         
         ${userPreferenceFormatted}
 
@@ -76,7 +76,7 @@ async function getRecomendation(req, res) {
 
     
          let answer = await getAnswer(tabRecipe, myRecipe, profilBot);
-
+        console.log("answer", answer);
          //trransformation de la reponse de l'IA en JSON
         const debutIndice = answer.indexOf('[');
         const finIndice = answer.lastIndexOf(']');
