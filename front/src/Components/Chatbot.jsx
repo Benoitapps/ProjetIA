@@ -95,7 +95,7 @@ export default function Chatbot() {
                   <div className="chatbot__container">
                       <div className="chatbot__container__header">
                           <p>Votre assistant Open Cook</p>
-                          <button onClick={() => setIsOpened(false)}>
+                          <button onClick={() => {setIsOpened(false); setIsFullscreen(false);}}>
                               <img src={Close} alt="Fermer le chatbot"/>
                           </button>
                       </div>
