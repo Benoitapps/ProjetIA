@@ -55,7 +55,10 @@ function SearchBar({ setRecipes, setIsLoading, isLoading }) {
             SpeechRecognition.stopListening();
             setIsListening(false);
             setSearchValue(transcript);
-            await makeRequest(transcript);
+
+            if(transcript !== "") {
+                await makeRequest(transcript);
+            }
         }
     }
 
