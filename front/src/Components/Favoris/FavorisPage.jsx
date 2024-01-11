@@ -15,7 +15,13 @@ function FavorisPage() {
             title: 'Preférences alimentaire',
             href: '/pref',
             active: false
-        }
+        },
+        {
+            id: 3,
+            title: 'Paramètres de recherche',
+            href: '/search-config',
+            active: false
+        },
     ];
 
     return (

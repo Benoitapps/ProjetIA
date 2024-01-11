@@ -21,7 +21,13 @@ function PreferencePage() {
             title: 'Preférences alimentaire',
             href: '/pref',
             active: true
-        }
+        },
+        {
+            id: 3,
+            title: 'Paramètres de recherche',
+            href: '/search-config',
+            active: false
+        },
     ];
 
     const addfood = async (foodname) => {

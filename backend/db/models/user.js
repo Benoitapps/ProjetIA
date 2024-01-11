@@ -21,6 +21,14 @@ module.exports = function (connection) {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      calorie_limit: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+      },
+      seasons: {
+        type: DataTypes.BOOLEAN,
+        allowNull: true,
+      }
     },
     {
       tableName: "users",

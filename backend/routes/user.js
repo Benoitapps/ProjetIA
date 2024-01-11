@@ -8,6 +8,7 @@ router.post('/login', userCtrl.login);
 router.post('/logout', userCtrl.logout);
 router.get('/connect', userCtrl.getConnectedUser);
 
-
+router.post('/calories', userCtrl.updateCalories);
+router.get('/calories', userCtrl.getCalories);
 
 module.exports = router;

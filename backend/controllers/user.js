@@ -198,6 +198,60 @@ async function logout(req, res) {
   }
 }
 
+// updateCalories
+async function updateCalories(req, res) {
+  try {
+    const token = req.cookies.token;
+    const decoded = jwt.verify(token, process.env.TOKEN_SECRET);
+    const userEmail = decoded.userEmail;
+
+    let user = await User.findOne({ where: { email: userEmail } });
+
+    if (user?.id) {
+      let calorieLimit = 0;
+      if (req.body.calories) {
+        calorieLimit = req.body.calories;
+      }
+      
+      await User.update(
+        {
+          calorie_limit: calorieLimit,
+        },
+        {
+          where: {
+            id: user.id,
+          },
+        }
+      );
+        
+      res.status(200).json({ message: "Calorie limit updated" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
+
+async function getCalories(req, res) {
+  try {
+    const token = req.cookies.token;
+    const decoded = jwt.verify(token, process.env.TOKEN_SECRET);
+    const userEmail = decoded.userEmail;
+
+    let user = await User.findOne({ where: { email: userEmail } });
+
+    if (user?.id) {
+      let calorieLimit = 0;
+      if (user.calorie_limit) {
+        calorieLimit = user.calorie_limit;
+      }
+      
+      res.status(200).json({ calorieLimit: calorieLimit });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
+
 module.exports = {
   signup,
   login,
@@ -205,4 +259,6 @@ module.exports = {
   getConnectedUser,
   logout,
   getConnectedUserNav,
+  updateCalories,
+  getCalories,
 };
