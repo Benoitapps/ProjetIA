@@ -240,10 +240,7 @@ async function getCalories(req, res) {
     let user = await User.findOne({ where: { email: userEmail } });
 
     if (user?.id) {
-      let calorieLimit = 0;
-      if (user.calorie_limit) {
-        calorieLimit = user.calorie_limit;
-      }
+      let calorieLimit = user.calorie_limit || 0;
       
       res.status(200).json({ calorieLimit: calorieLimit });
     }

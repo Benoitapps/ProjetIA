@@ -88,7 +88,7 @@ async function getShoppingList(req, res) {
               return ingredient.name;
           })} 
 
-          Donne moi la liste de course.
+          Donne moi la liste de course pour quatre personnes.
           Je veux uniquement du JSON pour pouvoir le traiter dans mon application.
           Il doit ressembler à ça:
           {
@@ -100,6 +100,14 @@ async function getShoppingList(req, res) {
                   {
                       "name": "poire",
                       "quantity": "3"
+                  },
+                  {
+                      "name": "sucre",
+                      "quantity": "2 cuillères à soupe"
+                  },
+                  {
+                      "name": "farine",
+                      "quantity": "500 grammes"
                   }
               ]
           }
