@@ -17,7 +17,6 @@ function RecipeIngredients({ ingredients, recipeId }) {
     }
 
     const shareOnMail = () => {
-        // TODO: To implement
         window.open(`mailto:?body=${setFormatedShoppingList()}`);
     }
 
@@ -40,6 +39,10 @@ function RecipeIngredients({ ingredients, recipeId }) {
         });
         return text;
     }
+
+    useEffect(() => {
+        setShoppingList(null);
+    }, [recipeId]);
 
     return (
         <section className="recipe__details__ingredients">
