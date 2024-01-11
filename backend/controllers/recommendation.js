@@ -11,17 +11,13 @@ const { getUserPreferenceFormatted } = require("../services/getUserPreferenceFor
 
 async function getRecomendation(req, res) {
 
-    console.log("recomendationnnnnnnn");
-
     try {
         if (!req.params?.recipeId) {
             return res.status(400).json({ error: "Paramètres manquants" });
         }
         const recipeId = req.params.recipeId;
-        console.log("connecter :", recipeId);
         //la recette selectionner
         let  myRecipe = await Recipe.findOne({ where: { id: recipeId } });
-        console.log("myrecipe.name", myRecipe.name);
 
 
         // //toutes les recettes sauf celle selectionner
@@ -48,10 +44,8 @@ async function getRecomendation(req, res) {
             }
         }
         const recipesWithIngredients = await getInge(recipeId);
-        // console.log("recipesWithIngredients", recipesWithIngredients);
 
         const tabRecipe = recipesWithIngredients.map((item) => `id:${item.id} nom:${item.name} lien:${item.src} Ingredients:${item.Ingredients.map(ing => ing.name).join(', ')} Description:${item.description}`).join(', ');
-        // console.log("tabRecipe", tabRecipe);
         
         const userPreferenceFormatted = await getUserPreferenceFormatted(req.cookies.token);
 
@@ -59,34 +53,48 @@ async function getRecomendation(req, res) {
         profilBot = `Voici les recettes ainsi que leurs id qui sont issues de ma base de données.
         Les données sont écrite de cette facon identifiant:nom_de_la_recette.
         voici les recettes de ma base de données:  ${tabRecipe}
-        J'aimerais que pour cette recette: ${myRecipe.name}, tu me donnes uniquement quatre recettes qui se rapprochent le plus possible en fonction des ingrédients qui la compose et qui sont forcement parmis les recettes données, dans ces 4 recettes donne moi le plus de recettes possible dont les ingrédients soient de saison (voici la date du jour: ${new Date().toLocaleDateString()}).
+        J'aimerais que pour cette recette: ${myRecipe.name}, tu me donnes uniquement quatre recettes qui se rapprochent le plus possible en fonction des ingrédients qui la compose et qui sont forcement parmis les recettes données,
+        dans ces 4 recettes donne moi le plus de recettes possible dont les ingrédients soient de saison a cette date: ${new Date().toLocaleDateString()}).
         
         ${userPreferenceFormatted}
 
         Si il y a moins de quatre recettes similaire tiré de ma base de données, tu m'ajouteras le nombre nécessaire de recette pour en avoir quatre au total.
-        retournes UNIQUEMENT et seulement un objet JSON et pas d'autres textes, le JSON aura cette forme :
-        [{"id": 11,"recette": "crepe au chocolat","src":"liens","description":"la description de la recette"},{"id": 17,"recette": "Pain au chocolat","src":"liens","description":"la description de la recette"},{"id": 14,"recette": "gateau a la fraise","src":"liens","description":"la description de la recette"},{"id": 16,"recette": "crepe au sucre","src":"liens","description":"la description de la recette"}]`;
+        retournes UNIQUEMENT et seulement un tableau d'id et pas d'autres textes sous cette forme :
+        [1,2,3,4]`
 
+        // [{"id": 11,"recette": "crepe au chocolat","src":"liens","description":"la description de la recette"},{"id": 17,"recette": "Pain au chocolat","src":"liens","description":"la description de la recette"},{"id": 14,"recette": "gateau a la fraise","src":"liens","description":"la description de la recette"},{"id": 16,"recette": "crepe au sucre","src":"liens","description":"la description de la recette"}]`;
 
     
-          
-       
-
-        console.log("profilBot", profilBot);   
-
     
          let answer = await getAnswer(tabRecipe, myRecipe, profilBot);
-        console.log("answer", answer);
-         //trransformation de la reponse de l'IA en JSON
-        const debutIndice = answer.indexOf('[');
-        const finIndice = answer.lastIndexOf(']');
-        const answer2 = answer.substring(debutIndice, finIndice + 1);
-        const answerJson = JSON.parse(answer2);
+
+        const debutanswer = answer.indexOf('[');
+        const finanswer = answer.lastIndexOf(']');
+        const answerResult = answer.substring(debutanswer, finanswer + 1);
+        const numberArray = JSON.parse(answerResult);
+
+
+        let recipesRes = [];
+
+        for (let i = 0; i < recipesWithIngredients.length; i++) {
+            let found = false;
+            for (let j = 0; j < numberArray.length; j++) {
+               
+              if (recipesWithIngredients[i].id === numberArray[j]) {
+                found = true;
+                break;
+              }
+            }
+          
+            if (found) {
+              recipesRes.push({"id":recipesWithIngredients[i].id,"recette":recipesWithIngredients[i].name,"src":recipesWithIngredients[i].src});
+            }
+          }
 
         const recipe = await Recipe.findAll();
 
         res.status(200).json({
-            answer: answerJson,
+            answer: recipesRes,
         });
     } catch (error) {
         res.status(500).json({ error: error.message });
