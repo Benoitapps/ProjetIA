@@ -1,5 +1,6 @@
 const bot = require("../bot/bot").bot;
 const { getUserPreferenceFormatted } = require("../services/getUserPreferenceFormatted");
+const { getCalorieFormatted } = require("../services/getCalorieFormatted");
 const { Recipe, Ingredient } = require("../db");
 
 require("dotenv").config({ path: ".env.local", override: true });
@@ -24,6 +25,7 @@ async function getRecipes(req, res) {
         });
 
         const userPreferenceFormatted = await getUserPreferenceFormatted(req.cookies.token);
+        const calorieFormatted = await getCalorieFormatted(req.cookies.token);
 
         const question = `
             Voici les recettes qui sont issues de ma base de données.
@@ -42,6 +44,7 @@ async function getRecipes(req, res) {
             Si ce sont des recettes, tu me donneras uniquement les recettes qui ont ce nom et rien d'autres.
 
             ${userPreferenceFormatted}
+            ${calorieFormatted}
 
             Tu me retourneras uniquement les noms des recettes sous cette forme et pas autrement: [{},{}]
             [

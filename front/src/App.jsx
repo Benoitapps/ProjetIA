@@ -4,6 +4,7 @@ import Home from './Components/Home';
 import RegisterPage from './Components/Register/RegisterPage';
 import LoginPage from './Components/Login/LoginPage';
 import PreferencePage from './Components/FoodPreference/PreferencePage';
+import SearchConfigPage from './Components/SearchConfig/SearchConfigPage';
 import RecipePageDetails from './Components/Recipes/RecipePageDetails.jsx';
 import FavorisPage from './Components/Favoris/FavorisPage.jsx';
 import NavBar from './Components/NavBar';
@@ -32,6 +33,7 @@ function App() {
             <Route path="favoris" element={<FavorisPage />} />
 
             <Route path="pref" element={<PreferencePage />} />
+            <Route path="search-config" element={<SearchConfigPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

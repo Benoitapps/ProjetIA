@@ -4,6 +4,20 @@
     right: 20px;
 }
 
+.chatbot--fullscreen {
+    position: fixed;
+    top: 100px;
+    left: 20px;
+    bottom: 20px;
+    right: 20px;
+    animation: appearIn 0.3s ease-in-out;
+}
+
+.chatbot--fullscreen .chatbot__container {
+    width: 100%;
+    height: 100%;
+}
+
 .chatbot__container {
     display: flex;
     flex-direction: column;
@@ -39,6 +53,7 @@
 }
 
 .chatbot__container__chat {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -89,6 +104,24 @@
 .chatbot__container__chat__message--bot p {
     background-color: var(--chatbot);
     color: var(--text-black);
+}
+
+.chatbot__container__fullscreen-button {
+    position: absolute;
+    left: 8px;
+    bottom: 56px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    border: none;
+    background: var(--primary);
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.chatbot__container__fullscreen-button:active {
+    background: var(--primary-hover);
 }
 
 .chatbot__container__input {
