@@ -87,7 +87,7 @@ async function getRecomendation(req, res) {
             }
           
             if (found) {
-              recipesRes.push({"id":recipesWithIngredients[i].id,"recette":recipesWithIngredients[i].name,"src":recipesWithIngredients[i].src});
+              recipesRes.push({"id":recipesWithIngredients[i].id,"recette":recipesWithIngredients[i].name,"src":recipesWithIngredients[i].src, "description":recipesWithIngredients[i].description});
             }
           }
 
