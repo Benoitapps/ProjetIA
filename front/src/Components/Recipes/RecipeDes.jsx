@@ -49,7 +49,7 @@ function RecipeDes({recipeId, isLogged}) {
             <RecipePreparation preparation={recipePrep} />
             <Accompagnement recipeName={recipeName}/>
 
-            <CommentPage recipeId={recipeId} commentsNote={commentsNote}/>
+            <CommentPage recipeId={recipeId} commentsNote={commentsNote} isLogged={isLogged}/>
         </div>
     )
 }

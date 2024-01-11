@@ -4,7 +4,7 @@ import CommentAdd from './CommentAdd.jsx'
 import {getComment} from "../../hook/Comment/getComment.js";
 import {postComment} from "../../hook/Comment/postComment.js";
 
-function CommentPage({recipeId, commentsNote}) {
+function CommentPage({recipeId, commentsNote, isLogged}) {
 
     const [comments, setComment] = useState([]);
 
@@ -30,9 +30,10 @@ function CommentPage({recipeId, commentsNote}) {
 
     return (
         <section className="recipe__details__comments">
-            <h3>Poster un commentaire</h3>
 
-            <CommentAdd addComment={addComment}/>
+           {isLogged? <h3>Poster un commentaire</h3>:null}
+           {isLogged?<CommentAdd addComment={addComment}/>:null}
+
             <CommentList comments={comments}/>
         </section>
     )
