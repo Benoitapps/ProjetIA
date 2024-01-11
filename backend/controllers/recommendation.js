@@ -59,11 +59,11 @@ async function getRecomendation(req, res) {
         profilBot = `Voici les recettes ainsi que leurs id qui sont issues de ma base de données.
         Les données sont écrite de cette facon identifiant:nom_de_la_recette.
         voici les recettes de ma base de données:  ${tabRecipe}
-        J'aimerais que pour cette recette: ${myRecipe.name}, tu me donnes uniquement quatre recettes qui se rapproche le plus possible en fonction des ingrédients qui la compose et qui sont forcement parmis les rectte données.
+        J'aimerais que pour cette recette: ${myRecipe.name}, tu me donnes uniquement quatre recettes qui se rapprochent le plus possible en fonction des ingrédients qui la compose et qui sont forcement parmis les recettes données, je veux que ces 4 recettes aient le plus d'ingrédients soient de saison (voici la date du jour: ${new Date().toLocaleDateString()}).
         
         ${userPreferenceFormatted}
 
-        Si il y a moins de quatre recettes similaire tiré de ma base de données, tu m'ajouteras le nombre nécessaire de recette pour en avoir quatre au total. 
+        Si il y a moins de quatre recettes similaire tiré de ma base de données, tu m'ajouteras le nombre nécessaire de recette pour en avoir quatre au total.
         retournes UNIQUEMENT et seulement un objet JSON et pas d'autres textes, le JSON aura cette forme :
         [{"id": 11,"recette": "crepe au chocolat","src":"liens","description":"la description de la recette"},{"id": 17,"recette": "Pain au chocolat","src":"liens","description":"la description de la recette"},{"id": 14,"recette": "gateau a la fraise","src":"liens","description":"la description de la recette"},{"id": 16,"recette": "crepe au sucre","src":"liens","description":"la description de la recette"}]`;
 
