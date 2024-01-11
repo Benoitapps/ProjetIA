@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import Switcher from "../Switcher.jsx";
-import '@css/Preference/Preferences.css';
+import '@css/SearchConfig/SearchConfig.css';
 
 function SearchConfigPage() {
     const [disabledSeason, setDisabledSeason] = useState(true);
@@ -49,6 +49,7 @@ function SearchConfigPage() {
     }
 
     const handleClickCalories = () => {
+        console.log('click');
         setDisabledCalories(!disabledCalories);
         setShowInputCalories(!showInputCalories);
 
@@ -87,48 +88,51 @@ function SearchConfigPage() {
     }
 
     return (
-        <div className='preferences'>
+        <div className='search-config'>
             <Switcher
                 links={links}
             />
-            <div>
-                Parametre de recherche
-            </div>
-            <div>
-                <div>
-                    {/* <span>
+            <ul className='search-config__options'>
+                {/*<li>
+                     <span>
                         Saisonnalité des aliments dans la recherche
                     </span>
                     <button onClick={() => handleClickSeason()}>
                         {
                             disabledSeason ? 'désactivé' : 'activé'
                         }
-                    </button> */}
-                </div>
-
-                <div>
-                    <span>
-                        Recherche de recette pas nombre de calories
-                    </span>
-                    <button onClick={() => handleClickCalories()}>
-                        {
-                            disabledCalories ? 'désactivé' : 'activé'
-                        }
                     </button>
+                </li>*/}
+
+                <li className='search-config__options__item'>
+                    <div className='search-config__options__item__option'>
+                        <label>
+                            Recherche de recettes par nombre de calories
+
+                            <div className='switch'>
+                                <input type="checkbox" onChange={() => {
+                                    handleClickCalories()
+                                }}/>
+                                <span className="slider"></span>
+                            </div>
+                        </label>
+                    </div>
                     {
-                        !disabledCalories &&
-                        <div>
-                            <span>
-                                Nombre de calories
-                            </span>
-                            <input type="number" value={caloriesLimit}/>
-                            <button onClick={() => handleClickSaveCalories()}>
-                                Sauvegarder le nombre de calories
-                            </button>
-                        </div>
+                      !disabledCalories &&
+                      <div className='search-config__options__item__more'>
+                          <span>
+                              Nombre de calories
+                          </span>
+                          <div className='search-config__options__item__more__field'>
+                              <input type="number" value={caloriesLimit}/>
+                              <button onClick={() => handleClickSaveCalories()}>
+                                  Sauvegarder
+                              </button>
+                          </div>
+                      </div>
                     }
-                </div>
-            </div>
+                </li>
+            </ul>
         </div>
     );
 }
