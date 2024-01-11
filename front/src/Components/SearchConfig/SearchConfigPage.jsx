@@ -3,7 +3,6 @@ import Switcher from "../Switcher.jsx";
 import '@css/SearchConfig/SearchConfig.css';
 
 function SearchConfigPage() {
-    const [disabledSeason, setDisabledSeason] = useState(true);
     const [disabledCalories, setDisabledCalories] = useState(true);
     const [showInputCalories, setShowInputCalories] = useState(false);
     const [caloriesLimit, setCaloriesLimit] = useState(0);
@@ -43,10 +42,6 @@ function SearchConfigPage() {
             }
         })
     }, []);
-
-    const handleClickSeason = () => {
-        setDisabledSeason(!disabledSeason);
-    }
 
     const handleClickCalories = () => {
         setDisabledCalories(!disabledCalories);
@@ -90,16 +85,6 @@ function SearchConfigPage() {
                 links={links}
             />
             <ul className='search-config__options'>
-                {/*<li>
-                     <span>
-                        Saisonnalité des aliments dans la recherche
-                    </span>
-                    <button onClick={() => handleClickSeason()}>
-                        {
-                            disabledSeason ? 'désactivé' : 'activé'
-                        }
-                    </button>
-                </li>*/}
 
                 <li className='search-config__options__item'>
                     <div className='search-config__options__item__option'>

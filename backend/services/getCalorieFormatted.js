@@ -12,9 +12,8 @@ const getCalorieFormatted = async (token) => {
         });
 
         let calorieLimit = user[0].dataValues.calorie_limit;
-        if (calorieLimit !== null) {
-            return `Je souhaite découvrir des recettes en respectant une limite de ${calorieLimit} calories. 
-            Pouvez-vous me suggérer des plats délicieux qui correspondent à cette restriction calorique ?`;
+        if (calorieLimit >= 0) {
+            return `Parmis toutes les recettes que tu vas me proposer je veux que celle ci ne dépasse pas ${calorieLimit} calories.`;
         }
     }
 
