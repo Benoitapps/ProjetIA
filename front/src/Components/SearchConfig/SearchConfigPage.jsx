@@ -6,7 +6,7 @@ function SearchConfigPage() {
     const [disabledSeason, setDisabledSeason] = useState(true);
     const [disabledCalories, setDisabledCalories] = useState(true);
     const [showInputCalories, setShowInputCalories] = useState(false);
-    const [caloriesLimit, setCaloriesLimit] = useState(null);
+    const [caloriesLimit, setCaloriesLimit] = useState(0);
 
     const links = [
         {
@@ -49,7 +49,6 @@ function SearchConfigPage() {
     }
 
     const handleClickCalories = () => {
-        console.log('click');
         setDisabledCalories(!disabledCalories);
         setShowInputCalories(!showInputCalories);
 
@@ -72,8 +71,8 @@ function SearchConfigPage() {
         }
     }
 
-    const handleClickSaveCalories = () => {
-        let calories = document.querySelector('input[type="number"]').value;
+    const handleClickSaveCalories = (e) => {
+        e.preventDefault();
 
         fetch('http://localhost:3000/calories', {
             method: 'POST',
@@ -81,7 +80,7 @@ function SearchConfigPage() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                calories
+                calories: caloriesLimit
             }),
             credentials: 'include'
         })
@@ -110,9 +109,10 @@ function SearchConfigPage() {
                             Recherche de recettes par nombre de calories
 
                             <div className='switch'>
-                                <input type="checkbox" onChange={() => {
-                                    handleClickCalories()
-                                }}/>
+                                <input type="checkbox"
+                                    onChange={() => {handleClickCalories()}}
+                                    checked={!disabledCalories}
+                                />
                                 <span className="slider"></span>
                             </div>
                         </label>
@@ -123,12 +123,12 @@ function SearchConfigPage() {
                           <span>
                               Nombre de calories
                           </span>
-                          <div className='search-config__options__item__more__field'>
-                              <input type="number" value={caloriesLimit}/>
-                              <button onClick={() => handleClickSaveCalories()}>
+                          <form className='search-config__options__item__more__field' onSubmit={handleClickSaveCalories}>
+                              <input type="number" value={caloriesLimit} onChange={(e) => setCaloriesLimit(e.target.value)}/>
+                              <button>
                                   Sauvegarder
                               </button>
-                          </div>
+                          </form>
                       </div>
                     }
                 </li>
