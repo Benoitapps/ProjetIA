@@ -14,8 +14,9 @@ const getUserPreferenceFormatted = async (token) => {
 
         let foodPreferenceFormatted = arrayOffoodPreference.join(", ");
 
-        return `Mes préférences alimentaires incluent : ${foodPreferenceFormatted}. 
-                C'est pourquoi si des recettes comportent un des ingrédients tu devras éviter de le prendre, car j'ai des allergies alimentaires.`;
+        return `Voici mes restrictions alimentaires : ${foodPreferenceFormatted}. 
+            C'est pourquoi si des recettes comportent un des ingrédients tu devras ABSOLUMENT éviter de prendre la recette.
+        `;
     }
 
     return "";
