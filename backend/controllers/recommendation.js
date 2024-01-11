@@ -59,7 +59,7 @@ async function getRecomendation(req, res) {
         profilBot = `Voici les recettes ainsi que leurs id qui sont issues de ma base de données.
         Les données sont écrite de cette facon identifiant:nom_de_la_recette.
         voici les recettes de ma base de données:  ${tabRecipe}
-        J'aimerais que pour cette recette: ${myRecipe.name}, tu me donnes uniquement quatre recettes qui se rapprochent le plus possible en fonction des ingrédients qui la compose et qui sont forcement parmis les recettes données, je veux que ces 4 recettes aient le plus d'ingrédients soient de saison (voici la date du jour: ${new Date().toLocaleDateString()}).
+        J'aimerais que pour cette recette: ${myRecipe.name}, tu me donnes uniquement quatre recettes qui se rapprochent le plus possible en fonction des ingrédients qui la compose et qui sont forcement parmis les recettes données, dans ces 4 recettes donne moi le plus de recettes possible dont les ingrédients soient de saison (voici la date du jour: ${new Date().toLocaleDateString()}).
         
         ${userPreferenceFormatted}
 
