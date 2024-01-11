@@ -65,8 +65,6 @@ function SearchConfigPage() {
             })
             .then(() => {
                 setShowInputCalories(false);
-                let input = document.querySelector('input[type="number"]');
-                input.value = '';
             })
         }
     }
