@@ -100,6 +100,14 @@ async function getShoppingList(req, res) {
                   {
                       "name": "poire",
                       "quantity": "3"
+                  },
+                  {
+                      "name": "sucre",
+                      "quantity": "2 cuillères à soupe"
+                  },
+                  {
+                      "name": "farine",
+                      "quantity": "500 grammes"
                   }
               ]
           }
